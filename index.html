@@ -3,229 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محاكي أسس بناء وتطوير المنهج التعليمي</title>
+    <title>محاكي تطوير المنهج التعليمي | تصميم: نهى العقيبي</title>
     <style>
         :root {
-            --primary: #1e3a8a;
-            --secondary: #0d9488;
-            --accent: #f59e0b;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
+            --primary: #4f46e5;
+            --secondary: #06b6d4;
+            --accent: #f43f5e;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
             --text: #1e293b;
         }
         body {
             font-family: 'Cairo', Tahoma, sans-serif;
-            background-color: var(--bg);
+            background: var(--bg-gradient);
             color: var(--text);
+            min-height: 100vh;
             margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
-            direction: rtl;
         }
         .container {
-            max-width: 900px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 850px;
             background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        h1, h2, h3 {
-            color: var(--primary);
-            text-align: center;
-        }
-        .progress-bar {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        .step {
-            flex: 1;
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
-            color: #94a3b8;
-            position: relative;
-        }
-        .step.active {
-            color: var(--secondary);
-        }
-        .section {
-            display: none;
-        }
-        .section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .btn {
-            background-color: var(--secondary);
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 30px;
+            text-align: right;
+            position: relative;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 800;
+        }
+        .header .signature {
+            margin-top: 5px;
+            font-size: 13px;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+        .content-body {
+            padding: 30px;
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .scenario-box {
+            background: #f8fafc;
+            border-right: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .option-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 16px 20px;
+            border-radius: 14px;
+            text-align: right;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #334155;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #eef2ff;
+            transform: translateY(-2px);
+        }
+        .option-btn.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .feedback-alert {
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: none;
+        }
+        .feedback-alert.success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; display: block; }
+        .feedback-alert.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; display: block; }
+        
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+        }
+        .btn-main {
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
+            padding: 12px 28px;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: bold;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background-color: #0f766e;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .option-card {
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 15px;
             cursor: pointer;
-            transition: all 0.3s;
-            background: #fff;
+            font-family: 'Cairo', sans-serif;
+            transition: background 0.2s;
         }
-        .option-card:hover, .option-card.selected {
-            border-color: var(--secondary);
-            background-color: #f0fdfa;
+        .btn-main:hover {
+            background: #4338ca;
         }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
+        .progress-dots {
+            display: flex;
+            gap: 8px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+        .dot.active {
+            background: var(--primary);
+            width: 25px;
+            border-radius: 6px;
+        }
+        .dashboard-card {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 20px;
             margin-bottom: 15px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            box-sizing: border-box;
+            border: 1px solid #e2e8f0;
         }
-        .feedback {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-        .success { background: #dcfce7; color: #166534; }
-        .error { background: #fee2e2; color: #991b1b; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>محاكي بناء وتطوير المنهج</h1>
-    <p style="text-align: center; color: #64748b;">تطبيق تفاعلي مستند إلى أسس المنهج ونظريات التعلم (البنائية وتفريد التعليم)</p>
-
-    <!-- شريط التقدم -->
-    <div class="progress-bar">
-        <div class="step active" id="s1">1. موقف التطوير</div>
-        <div class="step" id="s2">2. الأسس الستة</div>
-        <div class="step" id="s3">3. بيئة البنائية والتفريد</div>
-        <div class="step" id="s4">4. التقرير الختامي</div>
+    <!-- رأس المحاكي وتوقيع المصممة -->
+    <div class="header">
+        <h1>محاكي تطوير وتصميم المنهج التعليمي</h1>
+        <div class="signature">تصميم وتطوير: نهى العقيبي</div>
     </div>
 
-    <!-- المحطة الأولى: تحليل موقف التطوير الشامل -->
-    <div class="section active" id="sec1">
-        <h2>المحطة الأولى: مدخل تطوير المنهج</h2>
-        <p><strong>الموقف:</strong> طورت مدرسة مقررًا بإضافة فيديوهات فقط واقتصرت على الحفظ وتقديم نفس النشاط للجميع.</p>
-        <p>حدد الجوانب الشاملة التي يجب تطويرها لتتجاوز القصور:</p>
+    <div class="content-body">
         
-        <div class="card-grid">
-            <label class="option-card"><input type="checkbox" value="goals"> الأهداف (تحديد الغايات والنتاجات)</label>
-            <label class="option-card"><input type="checkbox" value="content"> المحتوى (المعرفة والمهارات)</label>
-            <label class="option-card"><input type="checkbox" value="teaching"> التدريس والأنشطة (مراعاة الفروق وتفريد التعليم)</label>
-            <label class="option-card"><input type="checkbox" value="evaluation"> التقويم (تجاوز الحفظ إلى قياس الفهم)</label>
+        <!-- شاشة 1: تحليل الموقف وتجاوز النظرة القاصرة -->
+        <div class="screen active" id="screen1">
+            <h3>المحطة الأولى: تشخيص اتجاه التطوير</h3>
+            <div class="scenario-box">
+                طلبت إدارة المدرسة تطوير مقرر الدراسات الاجتماعية بناءً على شكاوى من جمود المنهج واقتصاره على التلقين والحفظ الآلي، مع تفاوت مستويات استيعاب الطلبة. كيف ستدير عملية التطوير؟
+            </div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="selectOption(1, this, false)">إضافة فيديوهات تعليمية مرئية فقط بجانب الكتاب المدرسى دون تغيير الأنشطة.</button>
+                <button class="option-btn" onclick="selectOption(1, this, true)">إعادة هندسة المنهج ليشمل تكامل الأهداف، ومحتوى ينفتح على مشكلات البيئة، وتصميم مسارات تعلم تناسب الفروق الفردية للطلاب.</button>
+            </div>
+            <div id="feedback1" class="feedback-alert"></div>
+            
+            <div class="action-bar">
+                <div class="progress-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <button class="btn-main" onclick="nextScreen(2)" id="next1" style="display:none;">التالي</button>
+            </div>
         </div>
-        <button class="btn" onclick="nextSection(2)">انتقل للأسس الستة</button>
-    </div>
 
-    <!-- المحطة الثانية: تكامل الأسس الستة -->
-    <div class="section" id="sec2">
-        <h2>المحطة الثانية: تفعيل الأسس الستة لبناء المنهج</h2>
-        <p>اختر التطبيق التربوي الصحيح لكل أساس من أسس المنهج:</p>
-
-        <label>1. الأساس الفلسفي:</label>
-        <select id="phil">
-            <option value="">اختر التطبيق المناسب...</option>
-            <option value="correct">الاتساق بين الغايات المعلنة وأساليب التقويم والأنشطة لتنمية التفكير.</option>
-            <option value="wrong">التركيز على الحفظ والاسترجاع الآلي فقط.</option>
-        </select>
-
-        <label>2. الأساس النفسي (تفريد التعليم والبنائية):</label>
-        <select id="psych">
-            <option value="">اختر التطبيق المناسب...</option>
-            <option value="wrong">تقديم شرح واحد وثابت لجميع المتعلمين في نفس اللحظة.</option>
-            <option value="correct">مراعاة الفروق الفردية، وتصميم مسارات تعلم تناسب مستويات واستعدادات الطلاب.</option>
-        </select>
-
-        <label>3. الأساس الاجتماعي:</label>
-        <select id="soc">
-            <option value="">اختر التطبيق المناسب...</option>
-            <option value="correct">دراسة مشكلة محلية حقيقية (مثل ترشيد الاستهلاك) واقتراح حلول تعاونية.</option>
-            <option value="wrong">عزل المتعلم عن مشكلات بيئته ومجتمعه.</option>
-        </select>
-
-        <button class="btn" onclick="validateSec2()">تحقق وانتقل للمحطة التالية</button>
-        <div id="feedback2"></div>
-    </div>
-
-    <!-- المحطة الثالثة: تصميم نشاط وفق البنائية وتفريد التعليم -->
-    <div class="section" id="sec3">
-        <h2>المحطة الثالثة: مختبر المحاكي التفاعلي</h2>
-        <p>صمم نشاطاً لوحدة تعليمية (عن ترشيد الماء) مستنداً لنظرية التعلم <strong>البنائية</strong> وتفريد التعليم:</p>
-        
-        <label>صف استراتيجية النشاط المعرفي والنشط:</label>
-        <textarea id="activityDesc" rows="3" placeholder="مثال: يختار المتعلم مساراً استكشافياً تفاعلياً لحل مشكلة الهدر بناءً على خبراته السابقة..."></textarea>
-
-        <label>كيف يتم تحقيق "تفريد التعليم" في هذا النشاط؟</label>
-        <textarea id="individualDesc" rows="3" placeholder="مثال: تقديم مستويات دعم متنوعة (سقالات تعليمية) تناسب الفروق الفردية..."></textarea>
-
-        <button class="btn" onclick="nextSection(4)">عرض التقرير الختامي</button>
-    </div>
-
-    <!-- المحطة الرابعة: الختام والتقييم -->
-    <div class="section" id="sec4">
-        <h2>المحطة الرابعة: تقرير تصميم المحاكي الشامل</h2>
-        <div class="feedback success">
-            تهانينا! لقد أثبتِّ فهمك الشامل لمحاضرة أسس بناء وتطوير المنهج. تصميمك الحالي للمحاكي يغطي:
-            <ul>
-                <li>عناصر المنهج الخمسة (وليس جزءاً واحداً).</li>
-                <li>تكامل الأسس الستة (الفلسفي، النفسي، الاجتماعي، الثقافي، الديني، المعرفي).</li>
-                <li>تطبيق نظريات التعلم (البنائية وتفريد التعليم) لتجنب القصور التقليدي في التعليم.</li>
-            </ul>
+        <!-- شاشة 2: اتخاذ القرار التطبيقي للأسس والبيئات -->
+        <div class="screen" id="screen2">
+            <h3>المحطة الثانية: اتخاذ قرارات التصميم والتكيف</h3>
+            <div class="scenario-box">
+                أثناء بناء وحدات التعلم وتصميم أنشطة تفاعلية لربط الطلبة بواقعهم المجتمعي والقيمي، أي من الاستراتيجيات الآتية تضمن تحقيق أعلى كفاءة وتكيف للمنهج؟
+            </div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="selectOption(2, this, true)">إتاحة منصة استكشافية يحلل فيها الطلاب مشكلة محلية حقيقية، مع توفير خيارات دعم مرنة (مستويات ومصادر متعددة) تتناسب مع سرعة وقدرة كل متعلم.</button>
+                <button class="option-btn" onclick="selectOption(2, this, false)">إلزام جميع الطلاب بمسار واحد ونشاط واحد يركز حصرياً على التسميع النصي للمعلومات التاريخية.</button>
+            </div>
+            <div id="feedback2" class="feedback-alert"></div>
+            
+            <div class="action-bar">
+                <div class="progress-dots">
+                    <div class="dot"></div>
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                </div>
+                <button class="btn-main" onclick="nextScreen(3)" id="next2" style="display:none;">التقرير الختامي</button>
+            </div>
         </div>
-        <button class="btn" onclick="location.reload()">إعادة المحاكي</button>
+
+        <!-- شاشة 3: لوحة تقييم الأداء والتنفيذ -->
+        <div class="screen" id="screen3">
+            <h3>المحطة الثالثة: مؤشرات نجاح التطوير</h3>
+            <div class="dashboard-card">
+                <strong>حالة النظام التعليمي بعد قراراتك:</strong>
+                <ul>
+                    <li>تم تجاوز القصور التقليدي (التركيز على الحفظ والجانب الشكلي).</li>
+                    <li>أصبح المحاكي يعكس آليات مرنة للتكيف الفردي والتفاعل النشط للطلبة.</li>
+                    <li>تمت مطابقة معايير جودة البناء والتطوير المتكاملة للمنهج.</li>
+                </ul>
+            </div>
+            <div style="text-align: center; color: #059669; font-weight: bold; font-size: 18px; margin: 20px 0;">
+                تهانينا! لقد أثبتِّ كفاءة عالية في إدارة وتصميم وتطوير المنهج التعليمي وتكييفه واقعياً.
+            </div>
+            
+            <div class="action-bar" style="justify-content: center;">
+                <button class="btn-main" onclick="location.reload()">إعادة المحاكي من جديد</button>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <script>
-    function nextSection(sectionNum) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById('sec' + sectionNum).classList.add('active');
+    let userChoices = {};
+
+    function selectOption(screenNum, btnElement, isCorrect) {
+        // إزالة التحديد عن الأزرار في نفس الشاشة
+        const parent = btnElement.parentElement;
+        parent.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
         
-        document.querySelectorAll('.step').forEach(st => st.classList.remove('active'));
-        for(let i=1; i<=sectionNum; i++) {
-            document.getElementById('s' + i).classList.add('active');
+        // تحديد الزر الحالي
+        btnElement.classList.add('selected');
+        userChoices[screenNum] = isCorrect;
+
+        const feedback = document.getElementById('feedback' + screenNum);
+        const nextBtn = document.getElementById('next' + screenNum);
+
+        if (isCorrect) {
+            feedback.className = "feedback-alert success";
+            feedback.innerHTML = "قرار موفق! هذا الخيار يعكس فهماً عميقاً لتطوير المنهج وتكييف مخرجاته بفعالية.";
+            nextBtn.style.display = "block";
+        } else {
+            feedback.className = "feedback-alert error";
+            feedback.innerHTML = "هذا القرار يبقي على القصور التقليدي. تذكري ضرورة شمولية التطوير وتنوع مسارات التعلم.";
+            nextBtn.style.display = "none";
         }
     }
 
-    function validateSec2() {
-        const phil = document.getElementById('phil').value;
-        const psych = document.getElementById('psych').value;
-        const soc = document.getElementById('soc').value;
-        const feedback = document.getElementById('feedback2');
-
-        if(phil === 'correct' && psych === 'correct' && soc === 'correct') {
-            feedback.className = "feedback success";
-            feedback.innerHTML = "إجابات صحيحة وموفقة! تم ربط الأسس التربوية بنجاح.";
-            setTimeout(() => nextSection(3), 1500);
-        } else {
-            feedback.className = "feedback error";
-            feedback.innerHTML = "هناك خيارات غير دقيقة، راجعي مبادئ المحاضرة وحاولي مرة أخرى.";
-        }
+    function nextScreen(screenNum) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen' + screenNum).classList.add('active');
     }
 </script>
 
