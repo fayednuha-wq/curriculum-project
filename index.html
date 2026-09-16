@@ -292,7 +292,7 @@ textarea{width:100%;min-height:145px;background:rgba(0,0,0,.16);color:var(--text
  <button data-nav="home" class="active" onclick="go('home')">الرئيسية</button>
  <button data-nav="map" onclick="go('map')">خريطة الأسس</button>
  <button data-nav="learn" onclick="go('learn')">المراجعة</button>
- <button data-nav="quiz" onclick="startDiagnostic()">التشخيص</button>
+ <button type="button" data-nav="quiz" onclick="startDiagnostic()">التشخيص</button>
  <button data-nav="simulation" onclick="go('simulation')">المحاكاة</button>
  <button data-nav="results" onclick="go('results')">تحليل الأداء</button>
 </nav>
@@ -361,7 +361,15 @@ function go(id){
  $(id).classList.add("active");
  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
  if(id==="results") renderResults();
- if(id==="quiz" && state.quizStarted) renderQuestion();
+
+ if(id==="quiz"){
+   if(!state.quizStarted){
+     startDiagnostic();
+     return;
+   }
+   renderQuestion();
+ }
+
  updateHeader();
  window.scrollTo({top:0,behavior:"smooth"});
 }
@@ -375,9 +383,30 @@ function updateHeader(){
  $("homeLevel").textContent=getLevel();
  $("homeWeak").textContent=getWeakSkill()||"—";
 }
+
 function startDiagnostic(){
- state.i=0;state.score=0;state.correct=0;state.answered=false;state.skills={};state.quizStarted=true;
- go("quiz");renderQuestion();
+ state.i=0;
+ state.score=0;
+ state.correct=0;
+ state.answered=false;
+ state.skills={};
+ state.quizStarted=true;
+
+ document.querySelectorAll(".section")
+   .forEach(s=>s.classList.remove("active"));
+
+ $("quiz").classList.add("active");
+
+ document.querySelectorAll(".nav button")
+   .forEach(b=>b.classList.toggle("active",b.dataset.nav==="quiz"));
+
+ renderQuestion();
+ updateHeader();
+
+ window.scrollTo({
+   top:0,
+   behavior:"smooth"
+ });
 }
 function renderQuestion(){
  const q=questions[state.i];
