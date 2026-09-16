@@ -1,284 +1,2183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مختبر تطوير المنهج | بيئة تعلم رقمية تكيفية</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<title>مختبر تطوير المنهج | نهى حمود</title>
+
 <style>
 :root{
-  --bg:#07111f; --panel:#0d1b2e; --panel2:#11253d; --text:#eef6ff; --muted:#a9bdd3;
-  --accent:#5eead4; --accent2:#60a5fa; --gold:#fbbf24; --danger:#fb7185; --ok:#34d399;
-  --line:rgba(255,255,255,.1); --shadow:0 18px 55px rgba(0,0,0,.35);
+ --bg:#07111f;--surface:#0c1a2c;--surface2:#10243a;--surface3:#142d47;
+ --text:#f4f8fc;--muted:#a8bdd2;--line:rgba(255,255,255,.1);
+ --cyan:#55e5d0;--blue:#65a7ff;--gold:#f8c652;--green:#45d49a;--red:#fb7287;
+ --shadow:0 20px 70px rgba(0,0,0,.35);--radius:22px;
 }
+
 *{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:
-radial-gradient(circle at 10% 10%,rgba(96,165,250,.15),transparent 30%),
-radial-gradient(circle at 90% 20%,rgba(94,234,212,.12),transparent 30%),var(--bg);color:var(--text);min-height:100vh}
+
+html{scroll-behavior:smooth}
+
+body{
+ margin:0;
+ min-height:100vh;
+ color:var(--text);
+ font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+ background:
+ radial-gradient(circle at 12% 8%,rgba(101,167,255,.14),transparent 28%),
+ radial-gradient(circle at 88% 18%,rgba(85,229,208,.10),transparent 28%),
+ linear-gradient(180deg,#07111f,#091626 60%,#07111f);
+}
+
 button,input,textarea{font:inherit}
 button{cursor:pointer}
-.app{max-width:1250px;margin:auto;padding:22px}
-header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 20px;border:1px solid var(--line);background:rgba(13,27,46,.78);backdrop-filter:blur(14px);border-radius:24px;box-shadow:var(--shadow);position:sticky;top:12px;z-index:10}
-.brand{display:flex;align-items:center;gap:14px}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:grid;place-items:center;color:#03131d;font-weight:900;font-size:23px}
-h1,h2,h3{margin:0}.brand h1{font-size:19px}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}
-.progress-wrap{min-width:230px}.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:7px}.bar{height:9px;background:#07111f;border-radius:99px;overflow:hidden;border:1px solid var(--line)}.bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));width:0;transition:.5s}
-main{margin-top:24px}
-.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:18px}.card{background:linear-gradient(145deg,rgba(17,37,61,.94),rgba(10,24,40,.94));border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow)}
-.hero h2{font-size:clamp(28px,4vw,48px);line-height:1.12;margin:10px 0 14px}.hero p{color:var(--muted);line-height:1.9;max-width:760px}.tag{display:inline-flex;padding:7px 11px;border:1px solid rgba(94,234,212,.3);color:var(--accent);border-radius:99px;font-size:12px;background:rgba(94,234,212,.06)}
-.objectives{display:grid;gap:10px;margin-top:18px}.obj{display:flex;gap:10px;align-items:flex-start;color:#dce9f5;font-size:13px}.obj b{color:var(--accent);font-size:16px}
-.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stat{padding:18px;border-radius:20px;background:rgba(255,255,255,.035);border:1px solid var(--line)}.stat strong{font-size:28px;display:block;color:var(--accent)}.stat span{color:var(--muted);font-size:12px}
-.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.nav button{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);padding:10px 14px;border-radius:13px}.nav button.active{background:rgba(94,234,212,.13);border-color:rgba(94,234,212,.45);color:var(--accent)}
-.section{display:none}.section.active{display:block;animation:in .35s ease}@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.foundation{min-height:170px;position:relative;overflow:hidden}.foundation:after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;left:-55px;bottom:-65px;background:rgba(94,234,212,.06)}.foundation .num{font-size:12px;color:var(--accent);font-weight:700}.foundation h3{margin:9px 0}.foundation p{color:var(--muted);line-height:1.75;font-size:13px}.pill{display:inline-block;font-size:11px;color:#b9cce0;background:rgba(255,255,255,.06);border-radius:99px;padding:5px 8px;margin-top:7px}
-.lesson{display:grid;grid-template-columns:1fr 1fr;gap:15px}.lesson h3{margin-bottom:10px}.lesson p,.lesson li{color:var(--muted);line-height:1.9;font-size:14px}.lesson ul{padding-right:20px}
-.question-card{max-width:920px;margin:auto}.q-meta{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);font-size:12px;margin-bottom:16px}.q-text{font-size:22px;line-height:1.7;margin-bottom:20px}.choices{display:grid;gap:11px}.choice{width:100%;text-align:right;border:1px solid var(--line);background:rgba(255,255,255,.035);color:var(--text);padding:15px 17px;border-radius:16px;transition:.2s}.choice:hover{border-color:rgba(96,165,250,.55);transform:translateY(-1px)}.choice.selected{border-color:var(--accent2);background:rgba(96,165,250,.11)}.choice.correct{border-color:var(--ok);background:rgba(52,211,153,.11)}.choice.wrong{border-color:var(--danger);background:rgba(251,113,133,.09)}
-.actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.btn{border:0;border-radius:14px;padding:12px 18px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#03131d;font-weight:800}.btn.secondary{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}
-.feedback{margin-top:15px;padding:15px;border-radius:15px;display:none;line-height:1.8;font-size:13px}.feedback.show{display:block}.feedback.ok{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3)}.feedback.bad{background:rgba(251,113,133,.08);border:1px solid rgba(251,113,133,.3)}
-.scenario{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.casebox{line-height:2;color:#d9e7f4}.casebox strong{color:var(--gold)}.decision{display:grid;gap:10px}.decision button{padding:16px;text-align:right;background:rgba(255,255,255,.035);color:var(--text);border:1px solid var(--line);border-radius:15px}.decision button:hover{border-color:rgba(94,234,212,.45)}
-.dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:17px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.035)}.metric strong{font-size:25px;color:var(--accent)}.metric span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.bars{display:grid;gap:12px;margin-top:18px}.skill-row{display:grid;grid-template-columns:120px 1fr 45px;gap:10px;align-items:center;font-size:13px}.skillbar{height:10px;background:#07111f;border-radius:99px;overflow:hidden}.skillbar span{height:100%;display:block;background:linear-gradient(90deg,var(--accent2),var(--accent));width:0}
-.badge{padding:14px;border:1px solid rgba(251,191,36,.25);background:rgba(251,191,36,.06);border-radius:16px;margin-top:18px;line-height:1.8}.footer{text-align:center;color:var(--muted);font-size:12px;margin:28px 0 12px}.footer strong{color:var(--text)}
-textarea{width:100%;min-height:150px;background:rgba(0,0,0,.2);color:var(--text);border:1px solid var(--line);border-radius:16px;padding:15px;resize:vertical;line-height:1.8}.hint{font-size:12px;color:var(--muted);margin:9px 0}
-@media(max-width:850px){.hero,.lesson,.scenario{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.dashboard{grid-template-columns:1fr 1fr}header{position:static}.progress-wrap{min-width:150px}}
-@media(max-width:550px){.app{padding:12px}.grid,.dashboard{grid-template-columns:1fr}.q-text{font-size:18px}header{align-items:flex-start;flex-direction:column}.progress-wrap{width:100%}}
+
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible{
+ outline:3px solid rgba(85,229,208,.35);
+ outline-offset:3px
+}
+
+.app{
+ width:min(1180px,100%);
+ margin:auto;
+ padding:18px
+}
+
+.topbar{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:18px;
+ padding:16px 18px;
+ border:1px solid var(--line);
+ border-radius:20px;
+ background:rgba(12,26,44,.84);
+ backdrop-filter:blur(16px);
+ box-shadow:var(--shadow);
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:13px;
+ min-width:0
+}
+
+.logo{
+ flex:0 0 48px;
+ width:48px;
+ height:48px;
+ border-radius:15px;
+ display:grid;
+ place-items:center;
+ font-weight:900;
+ font-size:22px;
+ color:#03111c;
+ background:linear-gradient(135deg,var(--blue),var(--cyan));
+}
+
+.brand h1{
+ font-size:18px;
+ margin:0 0 3px
+}
+
+.brand p{
+ font-size:11px;
+ color:var(--muted);
+ margin:0
+}
+
+.top-progress{
+ min-width:240px
+}
+
+.progress-meta{
+ display:flex;
+ justify-content:space-between;
+ color:var(--muted);
+ font-size:11px;
+ margin-bottom:7px
+}
+
+.progress{
+ height:9px;
+ background:#06101d;
+ border:1px solid var(--line);
+ border-radius:999px;
+ overflow:hidden
+}
+
+.progress>i{
+ display:block;
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,var(--blue),var(--cyan));
+ transition:width .45s ease
+}
+
+main{
+ margin-top:20px
+}
+
+.section{
+ display:none
+}
+
+.section.active{
+ display:block;
+ animation:rise .28s ease
+}
+
+@keyframes rise{
+ from{opacity:0;transform:translateY(8px)}
+ to{opacity:1;transform:none}
+}
+
+.card{
+ background:linear-gradient(145deg,rgba(16,36,58,.96),rgba(9,23,39,.96));
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ padding:23px;
+ box-shadow:var(--shadow)
+}
+
+.hero{
+ display:grid;
+ grid-template-columns:1.35fr .65fr;
+ gap:16px
+}
+
+.eyebrow{
+ display:inline-flex;
+ align-items:center;
+ gap:7px;
+ padding:7px 10px;
+ border:1px solid rgba(85,229,208,.28);
+ background:rgba(85,229,208,.06);
+ color:var(--cyan);
+ border-radius:999px;
+ font-size:11px
+}
+
+.hero h2{
+ font-size:clamp(29px,4vw,49px);
+ line-height:1.08;
+ margin:14px 0 12px;
+ max-width:800px
+}
+
+.hero p,
+.copy{
+ color:var(--muted);
+ line-height:1.9;
+ font-size:14px
+}
+
+.features{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+ margin-top:18px
+}
+
+.feature{
+ padding:13px;
+ border:1px solid var(--line);
+ background:rgba(255,255,255,.025);
+ border-radius:16px
+}
+
+.feature b{
+ color:var(--cyan);
+ display:block;
+ font-size:12px;
+ margin-bottom:4px
+}
+
+.feature span{
+ font-size:12px;
+ color:#dce7f2;
+ line-height:1.7
+}
+
+.actions{
+ display:flex;
+ gap:9px;
+ align-items:center;
+ justify-content:space-between;
+ margin-top:18px;
+ flex-wrap:wrap
+}
+
+.btn{
+ border:0;
+ border-radius:13px;
+ padding:12px 16px;
+ font-weight:800;
+ color:#04131b;
+ background:linear-gradient(135deg,var(--blue),var(--cyan))
+}
+
+.btn.secondary{
+ background:rgba(255,255,255,.05);
+ color:var(--text);
+ border:1px solid var(--line)
+}
+
+.btn.small{
+ padding:9px 12px;
+ font-size:12px
+}
+
+.btn:disabled{
+ opacity:.45;
+ cursor:not-allowed
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:11px;
+ margin-top:16px
+}
+
+.stat{
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:16px;
+ background:rgba(255,255,255,.028)
+}
+
+.stat strong{
+ display:block;
+ font-size:26px;
+ color:var(--cyan)
+}
+
+.stat span{
+ display:block;
+ font-size:11px;
+ color:var(--muted);
+ margin-top:4px
+}
+
+.notice{
+ margin-top:15px;
+ padding:14px 15px;
+ border-radius:16px;
+ border:1px solid rgba(248,198,82,.2);
+ background:rgba(248,198,82,.055);
+ line-height:1.8;
+ font-size:12px;
+ color:#dae6f0
+}
+
+.section-title{
+ margin-bottom:13px
+}
+
+.section-title h2{
+ margin:9px 0 6px;
+ font-size:29px
+}
+
+.section-title p{
+ margin:0;
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.8
+}
+
+.foundation-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:13px
+}
+
+.foundation{
+ position:relative;
+ overflow:hidden;
+ min-height:165px
+}
+
+.foundation:after{
+ content:"";
+ position:absolute;
+ left:-40px;
+ bottom:-55px;
+ width:120px;
+ height:120px;
+ border-radius:50%;
+ background:rgba(85,229,208,.045)
+}
+
+.number{
+ color:var(--cyan);
+ font-weight:800;
+ font-size:11px
+}
+
+.foundation h3{
+ margin:9px 0 7px
+}
+
+.foundation p{
+ font-size:12px;
+ line-height:1.8;
+ color:var(--muted);
+ margin:0
+}
+
+.tag{
+ display:inline-block;
+ margin-top:10px;
+ padding:5px 8px;
+ border-radius:999px;
+ background:rgba(255,255,255,.05);
+ color:#cfe0ef;
+ font-size:10px
+}
+
+.learn-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:14px
+}
+
+.learn-list{
+ margin:12px 0 0;
+ padding-right:19px
+}
+
+.learn-list li{
+ margin:8px 0;
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.85
+}
+
+.quote{
+ padding:14px 16px;
+ border-right:4px solid var(--cyan);
+ background:rgba(85,229,208,.05);
+ border-radius:12px;
+ line-height:1.9;
+ font-size:13px;
+ margin-top:14px
+}
+
+.quiz-wrap{
+ max-width:900px;
+ margin:auto
+}
+
+.qhead{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ color:var(--muted);
+ font-size:11px;
+ margin-bottom:12px
+}
+
+.qtext{
+ font-size:22px;
+ line-height:1.75;
+ margin:16px 0 18px
+}
+
+.choices{
+ display:grid;
+ gap:10px
+}
+
+.choice{
+ width:100%;
+ text-align:right;
+ padding:14px 15px;
+ border-radius:15px;
+ border:1px solid var(--line);
+ background:rgba(255,255,255,.03);
+ color:var(--text);
+ transition:.18s ease;
+ line-height:1.65
+}
+
+.choice:hover{
+ transform:translateY(-1px);
+ border-color:rgba(101,167,255,.5)
+}
+
+.choice.selected{
+ border-color:var(--blue);
+ background:rgba(101,167,255,.09)
+}
+
+.choice.correct{
+ border-color:var(--green);
+ background:rgba(69,212,154,.08)
+}
+
+.choice.wrong{
+ border-color:var(--red);
+ background:rgba(251,114,135,.07)
+}
+
+/* لا يتم تلوين الإجابة الصحيحة عند اختيار إجابة خاطئة */
+
+.feedback{
+ display:none;
+ margin-top:14px;
+ border-radius:14px;
+ padding:13px 14px;
+ font-size:12px;
+ line-height:1.8
+}
+
+.feedback.show{
+ display:block
+}
+
+.feedback.good{
+ background:rgba(69,212,154,.08);
+ border:1px solid rgba(69,212,154,.28)
+}
+
+.feedback.bad{
+ background:rgba(251,114,135,.07);
+ border:1px solid rgba(251,114,135,.28)
+}
+
+.adaptive{
+ display:none;
+ margin-top:13px;
+ padding:14px 15px;
+ border-radius:15px;
+ border:1px solid rgba(85,229,208,.26);
+ background:rgba(85,229,208,.05);
+ line-height:1.8;
+ font-size:12px
+}
+
+.adaptive.show{
+ display:block
+}
+
+.adaptive-link{
+ display:inline-flex;
+ align-items:center;
+ gap:7px;
+ margin-top:10px;
+ padding:9px 12px;
+ border-radius:12px;
+ border:1px solid rgba(85,229,208,.35);
+ background:rgba(85,229,208,.08);
+ color:var(--cyan);
+ font-weight:800;
+ text-decoration:none
+}
+
+.adaptive-link:hover{
+ background:rgba(85,229,208,.14)
+}
+
+.sim-grid{
+ display:grid;
+ grid-template-columns:.85fr 1.15fr;
+ gap:14px
+}
+
+.scenario p{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.9
+}
+
+.scenario strong{
+ color:var(--gold)
+}
+
+.decisions{
+ display:grid;
+ gap:10px
+}
+
+.decision{
+ padding:14px;
+ text-align:right;
+ color:var(--text);
+ border:1px solid var(--line);
+ background:rgba(255,255,255,.03);
+ border-radius:14px;
+ line-height:1.7
+}
+
+.decision:hover{
+ border-color:rgba(85,229,208,.4)
+}
+
+textarea{
+ width:100%;
+ min-height:145px;
+ background:rgba(0,0,0,.16);
+ color:var(--text);
+ border:1px solid var(--line);
+ border-radius:15px;
+ padding:14px;
+ line-height:1.8;
+ resize:vertical
+}
+
+.results-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:10px
+}
+
+.metric{
+ padding:15px;
+ border-radius:16px;
+ border:1px solid var(--line);
+ background:rgba(255,255,255,.03)
+}
+
+.metric b{
+ display:block;
+ font-size:23px;
+ color:var(--cyan)
+}
+
+.metric span{
+ font-size:11px;
+ color:var(--muted)
+}
+
+.skills{
+ display:grid;
+ gap:12px;
+ margin-top:17px
+}
+
+.skill{
+ display:grid;
+ grid-template-columns:115px 1fr 45px;
+ gap:10px;
+ align-items:center;
+ font-size:12px
+}
+
+.skillbar{
+ height:9px;
+ border-radius:99px;
+ background:#06101d;
+ overflow:hidden
+}
+
+.skillbar i{
+ display:block;
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,var(--blue),var(--cyan));
+ transition:width .5s ease
+}
+
+.portfolio{
+ margin-top:15px
+}
+
+.hidden{
+ display:none
+}
+
+.nav{
+ display:flex;
+ gap:7px;
+ flex-wrap:wrap;
+ margin:16px 0 0
+}
+
+.nav button{
+ border:1px solid var(--line);
+ background:rgba(255,255,255,.04);
+ color:var(--text);
+ padding:9px 12px;
+ border-radius:12px;
+ font-size:12px
+}
+
+.nav button.active{
+ color:var(--cyan);
+ border-color:rgba(85,229,208,.42);
+ background:rgba(85,229,208,.08)
+}
+
+.footer{
+ text-align:center;
+ color:var(--muted);
+ font-size:11px;
+ line-height:1.9;
+ margin:23px 0 8px
+}
+
+.footer strong{
+ color:var(--text)
+}
+
+.toast{
+ position:fixed;
+ right:16px;
+ bottom:16px;
+ padding:12px 14px;
+ border-radius:12px;
+ background:#10243a;
+ border:1px solid var(--line);
+ box-shadow:var(--shadow);
+ font-size:12px;
+ display:none;
+ z-index:50
+}
+
+.toast.show{
+ display:block;
+ animation:rise .2s ease
+}
+
+@media(max-width:900px){
+ .hero,.learn-grid,.sim-grid{
+   grid-template-columns:1fr
+ }
+
+ .foundation-grid{
+   grid-template-columns:repeat(2,1fr)
+ }
+
+ .results-grid{
+   grid-template-columns:repeat(2,1fr)
+ }
+}
+
+@media(max-width:620px){
+ .app{
+   padding:9px
+ }
+
+ .topbar{
+   padding:13px 14px;
+   align-items:flex-start;
+   flex-direction:column
+ }
+
+ .top-progress{
+   width:100%;
+   min-width:0
+ }
+
+ .hero h2{
+   font-size:30px
+ }
+
+ .features{
+   grid-template-columns:1fr
+ }
+
+ .foundation-grid,
+ .results-grid,
+ .stats{
+   grid-template-columns:1fr
+ }
+
+ .card{
+   padding:17px;
+   border-radius:19px
+ }
+
+ .qtext{
+   font-size:18px
+ }
+
+ .actions{
+   flex-direction:column;
+   align-items:stretch
+ }
+
+ .actions .btn{
+   width:100%
+ }
+
+ .skill{
+   grid-template-columns:90px 1fr 38px;
+   font-size:11px
+ }
+
+ .nav{
+   position:sticky;
+   bottom:7px;
+   z-index:30;
+   flex-wrap:nowrap;
+   overflow-x:auto;
+   padding:7px;
+   border:1px solid var(--line);
+   background:rgba(7,17,31,.9);
+   backdrop-filter:blur(14px);
+   border-radius:16px;
+   scrollbar-width:none
+ }
+
+ .nav::-webkit-scrollbar{
+   display:none
+ }
+
+ .nav button{
+   white-space:nowrap;
+   flex:0 0 auto
+ }
+}
 </style>
 </head>
 <body>
 <div class="app">
-<header>
-  <div class="brand"><div class="logo">م</div><div><h1>مختبر تطوير المنهج</h1><p>بيئة تعلم رقمية مصغرة • تكيفية • قائمة على الاستقصاء</p></div></div>
-  <div class="progress-wrap"><div class="progress-label"><span>تقدمك في المختبر</span><b id="progressText">0%</b></div><div class="bar"><span id="progressBar"></span></div></div>
+
+<header class="topbar">
+ <div class="brand">
+  <div class="logo">م</div>
+  <div>
+   <h1>مختبر تطوير المنهج</h1>
+   <p>بيئة تعلم رقمية مصغرة • تعلم تكيفي • تفكير أعلى</p>
+  </div>
+ </div>
+
+ <div class="top-progress">
+  <div class="progress-meta">
+   <span>التقدم</span>
+   <b id="progressText">0%</b>
+  </div>
+  <div class="progress">
+   <i id="progressBar"></i>
+  </div>
+ </div>
 </header>
 
 <main>
+
 <section id="home" class="section active">
-<div class="hero">
- <div class="card">
-  <span class="tag">تصميم تعليمي قائم على البنائية + تفريد التعليم</span>
-  <h2>حوّلي المعرفة إلى قرارات تطويرية.</h2>
-  <p>مختبر محاكاة يساعدك على تحليل مواقف واقعية في بناء وتطوير المنهج، ثم اتخاذ قرار تربوي مبرر. البيئة لا تكتفي بقياس الحفظ؛ بل تستخدم أسئلة متدرجة وسيناريوهات لاتخاذ القرار، وتكشف جوانب القصور وتقترح لك مسارًا علاجيًا قصيرًا عند الحاجة.</p>
-  <div class="objectives">
-   <div class="obj"><b>01</b><span>تحليل عناصر المنهج وربطها بالأسس الستة.</span></div>
-   <div class="obj"><b>02</b><span>تفسير أثر الفروق الفردية في تصميم التعليم والتقويم.</span></div>
-   <div class="obj"><b>03</b><span>تطبيق المعرفة في مواقف محاكاة واتخاذ قرار مبرر.</span></div>
-   <div class="obj"><b>04</b><span>تنمية التحليل والاستنتاج والتقويم والتصميم.</span></div>
+ <div class="hero">
+
+  <div class="card">
+   <span class="eyebrow">
+    مبنية على محتوى المحاضرة • البنائية + تفريد التعليم
+   </span>
+
+   <h2>حلّلي المنهج، اكتشفي القصور، ثم صمّمي التحسين.</h2>
+
+   <p>
+    بيئة محاكاة مصغرة موجهة لطالبات شعبة تقنيات التعليم.
+    تنتقل بك من بناء المفهوم إلى تشخيص الفهم، ثم اتخاذ قرارات
+    تربوية في مواقف واقعية، مع مسار دعم تكيفي عند ظهور فجوة.
+   </p>
+
+   <div class="features">
+
+    <div class="feature">
+     <b>01 • تحليل</b>
+     <span>تمييز المشكلة وربطها بالأساس المناسب.</span>
+    </div>
+
+    <div class="feature">
+     <b>02 • استنتاج</b>
+     <span>استنتاج أثر القرار على المتعلم والمنهج.</span>
+    </div>
+
+    <div class="feature">
+     <b>03 • تقويم</b>
+     <span>الحكم على اتساق الممارسة مع الغايات.</span>
+    </div>
+
+    <div class="feature">
+     <b>04 • تصميم</b>
+     <span>اقتراح تحسين عملي وذكر دليل على أثره.</span>
+    </div>
+
+   </div>
+
+   <div class="actions">
+    <button class="btn" onclick="startDiagnostic()">
+     ابدئي التشخيص ←
+    </button>
+
+    <button class="btn secondary" onclick="go('map')">
+     استكشفي الخريطة
+    </button>
+   </div>
   </div>
-  <div class="actions"><button class="btn" onclick="go('learn')">ابدئي المختبر ←</button><button class="btn secondary" onclick="go('foundations')">استكشفي الخريطة</button></div>
- </div>
- <div class="card">
-  <h3>لوحة الأداء</h3><div class="stat-grid" style="margin-top:15px">
-   <div class="stat"><strong id="scoreHome">0</strong><span>درجة من 30</span></div>
-   <div class="stat"><strong id="correctHome">0</strong><span>إجابات صحيحة</span></div>
-   <div class="stat"><strong id="levelHome">مستكشفة</strong><span>المستوى الحالي</span></div>
-   <div class="stat"><strong id="weakHome">—</strong><span>المهارة التي تحتاج دعماً</span></div>
+
+  <div class="card">
+   <span class="eyebrow">لوحة المتعلمة</span>
+
+   <div class="stats">
+
+    <div class="stat">
+     <strong id="homeScore">0/30</strong>
+     <span>الدرجة</span>
+    </div>
+
+    <div class="stat">
+     <strong id="homeCorrect">0</strong>
+     <span>إجابات صحيحة</span>
+    </div>
+
+    <div class="stat">
+     <strong id="homeLevel">مستكشفة</strong>
+     <span>المستوى</span>
+    </div>
+
+    <div class="stat">
+     <strong id="homeWeak">—</strong>
+     <span>أولوية الدعم</span>
+    </div>
+
+   </div>
+
+   <div class="notice">
+    <b>مبدأ التكيف:</b>
+    الخطأ لا يكشف الحل؛ بل يفتح مسار دعم مرتبطًا بالمفهوم
+    ثم يعيدك إلى التطبيق.
+   </div>
   </div>
-  <div class="badge"><b>كيف تتكيف البيئة؟</b><br>إذا أخطأتِ في مجال معين، تظهر لك بطاقة دعم مرتبطة بالمفهوم ثم تعودين لسؤال مشابه بدرجة تفكير أعلى.</div>
+
  </div>
-</div>
 </section>
 
-<section id="foundations" class="section">
-<div class="card"><span class="tag">خريطة المفاهيم</span><h2 style="margin:10px 0 8px">الأسس الستة لبناء المنهج</h2><p style="color:var(--muted)">المحاضرة تؤكد أن الأسس تعمل معًا ولا يمكن فهم المنهج بمعزل عن أي منها.</p></div>
-<div class="grid" style="margin-top:15px">
-<div class="card foundation"><span class="num">01 • لماذا نعلم؟</span><h3>الفلسفي</h3><p>يحدد الغايات الكبرى والقيم، ويؤثر في المحتوى والتدريس والتقويم.</p><span class="pill">الاتساق بين الغايات والممارسة</span></div>
-<div class="card foundation"><span class="num">02 • من المتعلم؟</span><h3>النفسي</h3><p>يراعي النمو والحاجات والدافعية والاستعداد والفروق الفردية.</p><span class="pill">تمايز + دعم</span></div>
-<div class="card foundation"><span class="num">03 • ماذا يحتاج المجتمع؟</span><h3>الاجتماعي</h3><p>يربط المنهج بحاجات المجتمع ومشكلاته وتطلعاته والتعاون والمسؤولية.</p><span class="pill">مشكلة واقعية</span></div>
-<div class="card foundation"><span class="num">04 • ماذا ننقل؟</span><h3>الثقافي</h3><p>ينقل الثقافة ويفهمها وينقيها ويطورها، مع احترام التنوع.</p><span class="pill">هوية + تنوع</span></div>
-<div class="card foundation"><span class="num">05 • ما القيم التي توجه السلوك؟</span><h3>الديني</h3><p>يوجه المبادئ والقيم والأخلاق، ويربط المعرفة بالسلوك المسؤول.</p><span class="pill">قيمة → ممارسة</span></div>
-<div class="card foundation"><span class="num">06 • ماذا نعلم؟</span><h3>المعرفي</h3><p>يهتم بطبيعة المعرفة ومصادرها ودقتها وتنظيمها وتطبيقها في الحياة.</p><span class="pill">دقة + تنظيم + تطبيق</span></div>
-</div>
+
+<section id="map" class="section">
+
+ <div class="card section-title">
+  <span class="eyebrow">خريطة المفاهيم</span>
+
+  <h2>الأسس الستة لبناء المنهج</h2>
+
+  <p>
+   كما ورد في المحاضرة: الأسس تعمل معًا وتتداخل آثارها في المنهج.
+  </p>
+ </div>
+
+ <div class="foundation-grid" style="margin-top:13px">
+
+  <article class="card foundation">
+   <span class="number">01 • لماذا نعلم؟</span>
+   <h3>الأساس الفلسفي</h3>
+   <p>
+    يحدد الغايات الكبرى والقيم ويوجه المحتوى والتدريس والتقويم.
+   </p>
+   <span class="tag">الاتساق</span>
+  </article>
+
+  <article class="card foundation">
+   <span class="number">02 • من المتعلم؟</span>
+   <h3>الأساس النفسي</h3>
+   <p>
+    يراعي النمو والحاجات والدافعية والاستعداد والفروق الفردية.
+   </p>
+   <span class="tag">تمايز ودعم</span>
+  </article>
+
+  <article class="card foundation">
+   <span class="number">03 • ماذا يحتاج المجتمع؟</span>
+   <h3>الأساس الاجتماعي</h3>
+   <p>
+    يربط المنهج بحاجات المجتمع ومشكلاته والتعاون والمسؤولية.
+   </p>
+   <span class="tag">مشكلة واقعية</span>
+  </article>
+
+  <article class="card foundation">
+   <span class="number">04 • ماذا ننقل؟</span>
+   <h3>الأساس الثقافي</h3>
+   <p>
+    يهتم بالمعارف والقيم والعادات والتراث ونقل الثقافة وتطويرها.
+   </p>
+   <span class="tag">هوية وتنوع</span>
+  </article>
+
+  <article class="card foundation">
+   <span class="number">05 • ما القيم الموجهة للسلوك؟</span>
+   <h3>الأساس الديني</h3>
+   <p>
+    يوجه المبادئ والأخلاق ويربط المعرفة بالسلوك المسؤول.
+   </p>
+   <span class="tag">قيمة → ممارسة</span>
+  </article>
+
+  <article class="card foundation">
+   <span class="number">06 • ماذا نعلم؟</span>
+   <h3>الأساس المعرفي</h3>
+   <p>
+    يهتم بطبيعة المعرفة ومصادرها ودقتها وتنظيمها وتطبيقها في الحياة.
+   </p>
+   <span class="tag">دقة وتنظيم</span>
+  </article>
+
+ </div>
 </section>
+
 
 <section id="learn" class="section">
-<div class="lesson">
- <div class="card"><span class="tag">مراجعة ذكية</span><h2 style="margin:10px 0">قبل الاختبار</h2>
- <p>تطوير المنهج عملية شاملة تمس الأهداف والمحتوى والتدريس والأنشطة والتقويم والبيئة والمصادر. تحديث المحتوى وحده لا يكفي.</p>
- <ul><li>التطوير يستجيب لتغير المعرفة والتقنية وحاجات المجتمع والمتعلمين ونتائج البحوث والتقويم.</li><li>يمر التخطيط بتحديد الحاجة، وإعادة تعريف الأهداف، وتقييم المنهج الحالي ومراجعة الخطة.</li><li>التجريب قبل التعميم يكشف الثغرات قبل أن تؤثر في أعداد كبيرة من المتعلمين.</li><li>المنهج الإلكتروني الجيد يضيف التفاعل والتغذية الراجعة وتتبع التقدم، وليس مجرد نسخة رقمية من الكتاب.</li></ul>
+
+ <div class="learn-grid">
+
+  <div class="card">
+
+   <span class="eyebrow">مراجعة ذكية</span>
+
+   <h2 style="margin:10px 0">
+    ما معنى تطوير المنهج؟
+   </h2>
+
+   <p class="copy">
+    هو تحسين المنهج ليصبح أكثر قدرة على تحقيق أهدافه،
+    وهو عملية شاملة تمس جميع عناصره.
+   </p>
+
+   <ul class="learn-list">
+    <li>الأهداف: ماذا نريد من المتعلم أن يحقق؟</li>
+    <li>المحتوى: ماذا يتعلم؟</li>
+    <li>التدريس والأنشطة: كيف يتعلم؟</li>
+    <li>التقويم: كيف نعرف أنه تعلم؟</li>
+    <li>البيئة والمصادر: ما الذي يساعده على التعلم؟</li>
+   </ul>
+
+   <div class="quote">
+    إضافة المعلومات والفيديوهات وحدها لا تكفي؛
+    التطوير يشمل ما نتعلمه، وكيف نتعلمه،
+    وكيف نتحقق من التعلم.
+   </div>
+
+  </div>
+
+
+  <div class="card">
+
+   <span class="eyebrow">مفاتيح التفكير</span>
+
+   <h2 style="margin:10px 0">
+    من المحتوى إلى القرار
+   </h2>
+
+   <ul class="learn-list">
+    <li>تحديث المحتوى يستجيب للمعارف والتقنيات الجديدة.</li>
+    <li>المنهج الفعال يراعي حاجات المتعلمين والفروق الفردية.</li>
+    <li>التجريب قبل التعميم يكشف الثغرات.</li>
+    <li>التعلم الإلكتروني الجيد يتضمن التفاعل والتغذية الراجعة وتتبع التقدم.</li>
+    <li>الحكم على جودة المنهج ينظر إلى الأسس مجتمعة.</li>
+   </ul>
+
+   <div class="notice">
+    <b>قاعدة التحليل:</b>
+    ما المشكلة؟ ما الأساس المرتبط بها؟
+    ما التحسين؟ وكيف سأتحقق من أثره؟
+   </div>
+
+   <div class="actions">
+    <button class="btn" onclick="startDiagnostic()">
+     ابدئي الآن ←
+    </button>
+   </div>
+
+  </div>
+
  </div>
- <div class="card"><span class="tag">اتجاهات حديثة داخل المحتوى</span><h2 style="margin:10px 0">من الحفظ إلى التفكير</h2>
- <p>في ضوء المحاضرة: تنمية التفكير والإبداع والابتكار، تحسين المعارف والمهارات، الإعداد للحياة والعمل، التوسع في التقنية والمحتوى الرقمي، ومراعاة الفروق الفردية.</p>
- <div class="badge"><b>قاعدة المختبر:</b> كل قرار صحيح يجب أن يجيب: <i>ما المشكلة؟ ما الأساس المرتبط بها؟ وما الدليل على أن التحسين أحدث فرقًا؟</i></div>
- <div class="actions"><button class="btn" onclick="startQuiz()">ابدئي التشخيص ←</button></div>
- </div>
-</div>
 </section>
+
 
 <section id="quiz" class="section">
-<div class="card question-card">
-<div class="q-meta"><span id="qStage">تشخيص الفهم</span><span id="qCount">1 / 8</span></div>
-<div class="bar" style="margin-bottom:20px"><span id="qBar"></span></div>
-<div class="q-text" id="qText"></div>
-<div class="choices" id="choices"></div>
-<div id="feedback" class="feedback"></div>
-<div class="actions"><button class="btn secondary" id="hintBtn" onclick="showHint()">تلميح</button><button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>تحقق / التالي</button></div>
-<div id="adaptiveBox" class="badge" style="display:none"></div>
-</div>
+
+ <div class="card quiz-wrap">
+
+  <div class="qhead">
+   <span id="qStage">تشخيص الفهم</span>
+   <span id="qCounter">1 / 10</span>
+  </div>
+
+  <div class="progress">
+   <i id="quizBar"></i>
+  </div>
+
+  <div class="qtext" id="qText"></div>
+
+  <div class="choices" id="choices"></div>
+
+  <div id="feedback" class="feedback"></div>
+
+  <div id="adaptive" class="adaptive"></div>
+
+  <div class="actions">
+
+   <button
+    class="btn secondary small"
+    id="hintBtn"
+    onclick="showHint()">
+    تلميح
+   </button>
+
+   <button
+    class="btn"
+    id="nextBtn"
+    onclick="nextQuestion()"
+    disabled>
+    تحقق / التالي
+   </button>
+
+  </div>
+
+ </div>
 </section>
+
 
 <section id="simulation" class="section">
-<div class="card scenario">
- <div class="casebox">
-  <span class="tag">محاكاة قرار تربوي</span>
-  <h2 style="margin:12px 0">غرفة تطوير المنهج</h2>
-  <p>تخيلن أنك ضمن فريق تطوير مقرر دراسي. تشير البيانات الأولية إلى أن المقرر يحتوي معلومات حديثة وفيديوهات، لكن <strong>النشاط نفسه يقدم للجميع</strong>، والتقويم يعتمد على <strong>الحفظ</strong>، ولا توجد صلة واضحة بمشكلة مجتمعية.</p>
-  <p>مهمتك: اختاري سلسلة قرارات تجعل التطوير متسقًا مع الأسس وتكشف أثره.</p>
- </div>
- <div>
-  <h3>القرار الأول: ما أول خطوة؟</h3>
-  <div class="decision" id="decisions">
-   <button onclick="decision(1)">إضافة فيديوهات أكثر للمحتوى.</button>
-   <button onclick="decision(2)">تقييم المنهج الحالي وتحديد جوانب القوة والقصور والاحتياج.</button>
-   <button onclick="decision(3)">رفع مستوى صعوبة الاختبار مباشرة.</button>
+
+ <div class="sim-grid">
+
+  <div class="card scenario">
+
+   <span class="eyebrow">
+    محاكاة قرار تربوي
+   </span>
+
+   <h2 style="margin:10px 0">
+    غرفة تطوير المنهج
+   </h2>
+
+   <p>
+    لديك مقرر يحتوي على معلومات حديثة وفيديوهات،
+    لكنه يقدم النشاط نفسه لجميع الطالبات،
+    ويقيس الحفظ، ولا يرتبط بوضوح بمشكلة مجتمعية.
+   </p>
+
+   <p>
+    <strong>مهمتك:</strong>
+    اختاري القرارات التي تغير الممارسة التعليمية،
+    ثم اشرحي في المهمة المفتوحة كيف جمعتِ أكثر من أساس.
+   </p>
+
+   <div class="notice">
+    هذه المحاكاة تقيس التطبيق واتخاذ القرار، وليست سؤال حفظ.
+   </div>
+
   </div>
-  <div id="simFeedback" class="feedback"></div>
+
+
+  <div class="card">
+
+   <div id="simContent"></div>
+
+   <div id="simFeedback" class="feedback"></div>
+
+  </div>
+
  </div>
-</div>
-<div class="card" style="margin-top:15px">
- <h3>مهمة تصميم قصيرة</h3>
- <p class="hint">اكتبي تحسينًا يجمع أكثر من أساس، ثم وضحي كيف يظهر كل أساس فيه. هذا الجزء للتفكير البنائي وليس للحفظ.</p>
- <textarea id="designAnswer" placeholder="مثال لصياغة إجابة: أصمم نشاطًا ... لأنه يعالج ... ويقيس الأثر من خلال ..."></textarea>
- <div class="actions"><button class="btn" onclick="saveDesign()">حفظ التحليل في ملف إنجازي</button></div>
- <div id="saveMsg" class="feedback ok"></div>
-</div>
+
+
+ <div class="card" style="margin-top:14px">
+
+  <span class="eyebrow">
+   أثر تعلم بنائي
+  </span>
+
+  <h3 style="margin:10px 0">
+   مهمة تصميم قصيرة
+  </h3>
+
+  <p class="copy">
+   اكتبي تحسينًا يجمع أكثر من أساس، واشرحي كيف يظهر كل أساس فيه،
+   ثم حددي كيف ستعرفين أن التحسين أحدث فرقًا.
+  </p>
+
+  <textarea
+   id="designAnswer"
+   placeholder="اكتبي تحليلك هنا...">
+  </textarea>
+
+  <div class="actions">
+   <button class="btn" onclick="savePortfolio()">
+    حفظ أثر التعلم
+   </button>
+  </div>
+
+  <div id="saveFeedback" class="feedback"></div>
+
+ </div>
+
 </section>
+
 
 <section id="results" class="section">
-<div class="card"><span class="tag">لوحة التحليل التكيفي</span><h2 style="margin:10px 0">نتيجتك ليست رقمًا فقط</h2><p style="color:var(--muted)">يتم تفسير الأداء حسب المجالات التي ظهرت في إجاباتك، ثم اقتراح مسار مراجعة قصير.</p>
-<div class="dashboard" style="margin-top:18px">
-<div class="metric"><strong id="finalScore">0/30</strong><span>النتيجة الكلية</span></div>
-<div class="metric"><strong id="finalCorrect">0</strong><span>إجابات صحيحة</span></div>
-<div class="metric"><strong id="finalLevel">—</strong><span>مستوى الأداء</span></div>
-<div class="metric"><strong id="finalWeak">—</strong><span>أولوية الدعم</span></div>
-</div>
-<div class="bars" id="skillBars"></div>
-<div id="recommendation" class="badge"></div>
-<div class="actions"><button class="btn secondary" onclick="go('learn')">مراجعة المفاهيم</button><button class="btn" onclick="restart()">إعادة التشخيص</button></div>
-</div>
+
+ <div class="card">
+
+  <span class="eyebrow">
+   التحليل التكيفي
+  </span>
+
+  <h2 style="margin:10px 0 6px">
+   نتيجتك = تشخيص + مسار دعم
+  </h2>
+
+  <p class="copy">
+   النتيجة توضّح الأداء حسب المهارات، وليس الرقم فقط.
+  </p>
+
+  <div class="results-grid">
+
+   <div class="metric">
+    <b id="finalScore">0/30</b>
+    <span>الدرجة</span>
+   </div>
+
+   <div class="metric">
+    <b id="finalCorrect">0/10</b>
+    <span>الصحيح</span>
+   </div>
+
+   <div class="metric">
+    <b id="finalLevel">—</b>
+    <span>المستوى</span>
+   </div>
+
+   <div class="metric">
+    <b id="finalWeak">—</b>
+    <span>الدعم</span>
+   </div>
+
+  </div>
+
+  <div id="skills" class="skills"></div>
+
+  <div id="recommendation" class="notice"></div>
+
+  <div class="actions">
+
+   <button class="btn secondary" onclick="go('learn')">
+    مراجعة المفاهيم
+   </button>
+
+   <button class="btn" onclick="resetAll()">
+    إعادة التجربة
+   </button>
+
+  </div>
+
+ </div>
+
+
+ <div id="portfolio" class="card portfolio hidden">
+
+  <span class="eyebrow">
+   ملف الإنجاز المحلي
+  </span>
+
+  <h3 style="margin:10px 0">
+   أثر التعلم المحفوظ
+  </h3>
+
+  <p
+   id="portfolioText"
+   class="copy"
+   style="white-space:pre-wrap">
+  </p>
+
+ </div>
+
 </section>
+
 </main>
 
-<div class="nav">
-<button onclick="go('home')" class="active" data-nav="home">الرئيسية</button>
-<button onclick="go('foundations')" data-nav="foundations">خريطة الأسس</button>
-<button onclick="go('learn')" data-nav="learn">المراجعة</button>
-<button onclick="go('quiz')" data-nav="quiz">التشخيص</button>
-<button onclick="go('simulation')" data-nav="simulation">المحاكاة</button>
-<button onclick="go('results')" data-nav="results">تحليل الأداء</button>
+
+<nav class="nav" aria-label="تنقل البيئة">
+
+ <button
+  data-nav="home"
+  class="active"
+  onclick="go('home')">
+  الرئيسية
+ </button>
+
+ <button
+  data-nav="map"
+  onclick="go('map')">
+  خريطة الأسس
+ </button>
+
+ <button
+  data-nav="learn"
+  onclick="go('learn')">
+  المراجعة
+ </button>
+
+ <button
+  data-nav="quiz"
+  onclick="go('quiz')">
+  التشخيص
+ </button>
+
+ <button
+  data-nav="simulation"
+  onclick="go('simulation')">
+  المحاكاة
+ </button>
+
+ <button
+  data-nav="results"
+  onclick="go('results')">
+  تحليل الأداء
+ </button>
+
+</nav>
+
+
+<footer class="footer">
+
+ <strong>إعداد: نهى حمود</strong>
+ •
+ إشراف: د. خلود آل الشيخ
+
+ <br>
+
+ بيئة تعلم رقمية مصغرة مبنية على محتوى
+ محاضرة «أسس بناء وتطوير المنهج».
+
+</footer>
+
 </div>
 
-<div class="footer"><strong>إعداد: نهى حمود</strong> &nbsp; • &nbsp; إشراف: د. خلود آل الشيخ<br>بيئة تعلم رقمية مصغرة مبنية على محتوى محاضرة «أسس بناء وتطوير المنهج».</div>
-</div>
-
+<div id="toast" class="toast"></div>
 <script>
+
+/*
+  مختبر تطوير المنهج
+
+  - ملف واحد HTML
+  - لا يكشف الإجابة الصحيحة عند الخطأ
+  - يفتح مسار دعم تكيفي مرتبطًا بالمجال
+  - متجاوب للجوال
+  - 10 أسئلة × 3 درجات = 30 درجة
+*/
+
 const questions=[
-{skill:"التطوير",stage:"فهم المفهوم",q:"مدرسة أضافت معلومات حديثة وفيديوهات، لكنها تقدم النشاط نفسه للجميع وتقيس الحفظ فقط. ما الاستنتاج الأدق؟",c:["المنهج تطور بالكامل لأن المحتوى أصبح حديثًا.","التطوير تحقق في المحتوى فقط، بينما ما زالت هناك فجوات في الأنشطة والتقويم ومراعاة الفروق.","المشكلة الوحيدة هي نقص الفيديوهات.","الحل هو زيادة كمية المعلومات."],a:1,h:"ارجعي إلى الفكرة الأساسية: التطوير يمس ما نتعلمه وكيف نتعلمه وكيف نتحقق من التعلم."},
-{skill:"نفسي",stage:"تحليل",q:"إذا كانت الطالبات متقاربات في العمر لكن متفاوتات في الاستعداد والفهم، فأي قرار يتفق مع الأساس النفسي؟",c:["نشاط واحد وزمن واحد للجميع.","زيادة الحفظ للجميع.","تنويع الخبرات والدعم وفق مستويات الاستعداد والفروق الفردية.","إلغاء التقويم."],a:2,h:"المحاضرة تفرق بين تقارب الأعمار وتماثل القدرات."},
-{skill:"فلسفي",stage:"استنتاج",q:"منهج يعلن أنه ينمي الحوار، لكن أنشطته لا تسمح بتبادل الآراء. أين يقع عدم الاتساق؟",c:["بين الغايات المعلنة والممارسات الفعلية.","بين البيئة والمصادر فقط.","بين المعرفة التجريبية والنقلية.","لا يوجد عدم اتساق."],a:0,h:"قارني بين ما يصرح به المنهج وما يمارسه المتعلم فعليًا."},
-{skill:"اجتماعي",stage:"تحليل",q:"أراد فريق تطوير مقررًا مرتبطًا بحاجات المجتمع. أي نشاط يحقق ذلك بصورة أوضح؟",c:["حفظ تعريفات المجتمع.","دراسة مشكلة محلية واقتراح حلول قابلة للتطبيق.","إضافة صفحات نظرية.","اختبار اختيار من متعدد عن المصطلحات فقط."],a:1,h:"الأساس الاجتماعي يربط المنهج بمشكلات المجتمع وتطلعاته."},
-{skill:"ثقافي",stage:"تمييز",q:"أي عبارة تميز الأساس الثقافي عن الاجتماعي؟",c:["الثقافي يركز على حاجات المجتمع ومشكلاته فقط.","الثقافي يهتم بمعارف المجتمع وقيمه وعاداته وتراثه، بينما الاجتماعي يركز على حاجاته وعلاقاته ومشكلاته.","لا فرق بينهما.","الثقافي يركز على التقويم فقط."],a:1,h:"راجعي المقارنة: الاجتماعي = حاجات وعلاقات ومشكلات، الثقافي = معرفة وقيم وعادات وتراث."},
-{skill:"ديني",stage:"تطبيق",q:"في نشاط علمي، ما الممارسة التي تُظهر تفعيل الأساس الديني كما ورد في المحاضرة؟",c:["تجميل النتائج لتبدو أفضل.","تسجيل النتائج كما حدثت فعلاً دون تزوير أو تجميل.","حذف النتائج المخالفة للتوقع.","حفظ التعريفات."],a:1,h:"المحاضرة تقدم الأمانة في تسجيل نتائج التجربة مثالًا على ربط المعرفة بالسلوك المسؤول."},
-{skill:"معرفي",stage:"تحليل",q:"عند اختيار معرفة للمنهج، أي مجموعة تمثل معايير الاختيار المذكورة؟",c:["قديمة، كثيرة، صعبة.","دقيقة وحديثة وموثوقة، مهمة ومرتبطة بالحياة، ومناسبة لقدرات المتعلمين.","مختصرة فقط.","متشابهة مع كتب سابقة."],a:1,h:"معايير الاختيار تشمل الدقة والحداثة والموثوقية والأهمية والملاءمة والتوازن."},
-{skill:"تفكير_عليا",stage:"تقويم وتصميم",q:"لديك مقرر حديث المحتوى لكنه لا يرتبط بمشكلة مجتمعية ويقيس الحفظ فقط. أي خطة تطوير أكثر اتساقًا مع المحاضرة؟",c:["زيادة عدد صفحات المحتوى.","استبدال كل المحتوى.","تحديد القصور، ربطه بالأسس المناسبة، تصميم أنشطة تطبيقية متنوعة، ثم متابعة الأثر بالتقويم.","إلغاء التقويم."],a:2,h:"المهمة الختامية في المحاضرة تطلب: تحديد القوة، استخراج القصور، ربطه بالأساس، اقتراح تحسين مبرر، ثم تحديد كيف نتحقق من الأثر."}
-];
-let state={i:0,score:0,correct:0,answered:false,skills:{},sim:0};
-const points=3;
-function go(id){
- document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.nav===id));
- window.scrollTo({top:0,behavior:"smooth"});
- updateTop();
- if(id==="results") renderResults();
-}
-function updateTop(){
- const done=state.i;
- const pct=Math.min(100,Math.round((done/questions.length)*100));
- document.getElementById("progressBar").style.width=pct+"%";
- document.getElementById("progressText").textContent=pct+"%";
- document.getElementById("scoreHome").textContent=state.score;
- document.getElementById("correctHome").textContent=state.correct;
- const weak=weakSkill();
- document.getElementById("weakHome").textContent=weak||"—";
- document.getElementById("levelHome").textContent=level();
-}
-function startQuiz(){state.i=0;state.score=0;state.correct=0;state.answered=false;state.skills={};go("quiz");renderQuestion();}
-function renderQuestion(){
- const q=questions[state.i]; state.answered=false;
- document.getElementById("qStage").textContent=q.stage+" • "+q.skill;
- document.getElementById("qCount").textContent=(state.i+1)+" / "+questions.length;
- document.getElementById("qBar").style.width=((state.i)/questions.length*100)+"%";
- document.getElementById("qText").textContent=q.q;
- const box=document.getElementById("choices");box.innerHTML="";
- q.c.forEach((t,idx)=>{const b=document.createElement("button");b.className="choice";b.textContent=t;b.onclick=()=>select(idx);box.appendChild(b)});
- document.getElementById("feedback").className="feedback";
- document.getElementById("feedback").textContent="";
- document.getElementById("adaptiveBox").style.display="none";
- document.getElementById("nextBtn").disabled=true;
- document.getElementById("nextBtn").textContent=state.i===questions.length-1?"عرض التحليل":"تحقق / التالي";
- document.getElementById("hintBtn").disabled=false;
- updateTop();
-}
-function select(idx){
- if(state.answered)return;
- const q=questions[state.i], choices=[...document.querySelectorAll(".choice")];
- choices[idx].classList.add("selected");
- state.answered=true;
- const f=document.getElementById("feedback");
- if(idx===q.a){
-  choices[idx].classList.add("correct");state.correct++;state.score+=points;state.skills[q.skill]=(state.skills[q.skill]||0)+100;
-  f.className="feedback show ok";f.innerHTML="<b>تحليل صحيح.</b> اختيارك ينسجم مع منطق المحاضرة.";
- }else{
-  choices[idx].classList.add("wrong");choices[q.a].classList.add("correct");state.skills[q.skill]=(state.skills[q.skill]||0)+0;
-  f.className="feedback show bad";f.innerHTML="<b>نحتاج إعادة بناء الفكرة.</b> راجعي التفسير ثم طبقيه على موقف جديد.";
-  const ab=document.getElementById("adaptiveBox");ab.style.display="block";ab.innerHTML="<b>مسار تكيفي مقترح:</b> مراجعة بطاقة <u>"+q.skill+"</u> ثم الانتقال للمحاكاة. لا تُخصم درجات إضافية بسبب مسار الدعم.";
+
+ {
+  skill:"التطوير",
+  stage:"فهم",
+  q:"مدرسة أضافت معلومات حديثة وفيديوهات، لكنها تقدم النشاط نفسه للجميع وتقيس الحفظ فقط. ما الاستنتاج الأدق؟",
+
+  c:[
+   "التطوير اكتمل لأن المحتوى أصبح حديثًا.",
+   "حدث تحديث للمحتوى فقط، بينما بقيت فجوات في الأنشطة والتقويم ومراعاة الفروق.",
+   "المشكلة الوحيدة هي نقص الفيديوهات.",
+   "الحل هو زيادة كمية المعلومات."
+  ],
+
+  a:1,
+
+  hint:"فكري في العبارة: التطوير يشمل ما نتعلمه، وكيف نتعلمه، وكيف نتحقق من التعلم."
+ },
+
+
+ {
+  skill:"نفسي",
+  stage:"تحليل",
+  q:"إذا كانت الطالبات متقاربات في العمر لكن متفاوتات في الاستعداد والفهم، فما القرار الأقرب للأساس النفسي؟",
+
+  c:[
+   "نشاط واحد وزمن واحد للجميع.",
+   "زيادة الحفظ للجميع.",
+   "تنويع الخبرات والدعم وفق الاستعداد والفروق الفردية.",
+   "إلغاء التقويم."
+  ],
+
+  a:2,
+
+  hint:"تقارب الأعمار لا يعني تماثل القدرات والاستعدادات."
+ },
+
+
+ {
+  skill:"فلسفي",
+  stage:"استنتاج",
+  q:"منهج يعلن أنه ينمي الحوار، لكن أنشطته لا تسمح بتبادل الآراء. أين يقع عدم الاتساق؟",
+
+  c:[
+   "بين الغايات المعلنة والممارسات الفعلية.",
+   "بين البيئة والمصادر فقط.",
+   "بين المعرفة التجريبية والنقلية.",
+   "لا يوجد عدم اتساق."
+  ],
+
+  a:0,
+
+  hint:"قارني ما يصرح به المنهج بما يمارسه المتعلم فعليًا."
+ },
+
+
+ {
+  skill:"اجتماعي",
+  stage:"تحليل",
+  q:"أراد فريق تطوير مقررًا مرتبطًا بحاجات المجتمع. أي نشاط يحقق ذلك بصورة أوضح؟",
+
+  c:[
+   "حفظ تعريفات المجتمع.",
+   "دراسة مشكلة محلية واقتراح حلول قابلة للتطبيق.",
+   "إضافة صفحات نظرية.",
+   "اختبار مصطلحات فقط."
+  ],
+
+  a:1,
+
+  hint:"الأساس الاجتماعي يربط المنهج بحاجات المجتمع ومشكلاته وتطلعاته."
+ },
+
+
+ {
+  skill:"ثقافي",
+  stage:"تمييز",
+  q:"أي عبارة تميز الأساس الثقافي عن الاجتماعي؟",
+
+  c:[
+   "الثقافي يركز على حاجات المجتمع ومشكلاته فقط.",
+   "الثقافي يهتم بمعارف المجتمع وقيمه وعاداته وتراثه، بينما الاجتماعي يركز على حاجاته وعلاقاته ومشكلاته.",
+   "لا فرق بينهما.",
+   "الثقافي يركز على التقويم فقط."
+  ],
+
+  a:1,
+
+  hint:"راجعي المقارنة: الاجتماعي = حاجات وعلاقات ومشكلات؛ الثقافي = معرفة وقيم وعادات وتراث."
+ },
+
+
+ {
+  skill:"ديني",
+  stage:"تطبيق",
+  q:"في نشاط علمي، أي ممارسة تظهر تفعيل الأساس الديني كما ورد في المحاضرة؟",
+
+  c:[
+   "تجميل النتائج لتبدو أفضل.",
+   "تسجيل النتائج كما حدثت فعلاً دون تزوير أو تجميل.",
+   "حذف النتائج المخالفة للتوقع.",
+   "حفظ التعريفات."
+  ],
+
+  a:1,
+
+  hint:"المثال الوارد يربط الأمانة في تسجيل النتائج بالسلوك المسؤول."
+ },
+
+
+ {
+  skill:"معرفي",
+  stage:"تحليل",
+  q:"عند اختيار معرفة للمنهج، أي مجموعة تمثل معايير الاختيار المذكورة؟",
+
+  c:[
+   "قديمة، كثيرة، صعبة.",
+   "دقيقة وحديثة وموثوقة، مهمة ومرتبطة بالحياة، ومناسبة لقدرات المتعلمين.",
+   "مختصرة فقط.",
+   "متشابهة مع كتب سابقة."
+  ],
+
+  a:1,
+
+  hint:"معايير الاختيار تتضمن الدقة والحداثة والموثوقية والأهمية والملاءمة والتوازن."
+ },
+
+
+ {
+  skill:"التفكير_العليا",
+  stage:"تقويم",
+  q:"منهج يقيس الحفظ فقط رغم إعلانه تنمية التفكير. ما المؤشر الأقوى على وجود فجوة؟",
+
+  c:[
+   "زيادة عدد الصفحات.",
+   "وجود فيديو في المقرر.",
+   "عدم الاتساق بين الغاية المعلنة وطريقة التقويم الفعلية.",
+   "ارتفاع عدد الأنشطة دون تغيير نوعها."
+  ],
+
+  a:2,
+
+  hint:"المحاضرة تربط جودة المنهج بالاتساق بين الفلسفة المعلنة والممارسة الفعلية."
+ },
+
+
+ {
+  skill:"التفكير_العليا",
+  stage:"تصميم",
+  q:"أي خطة تطوير أقرب للمهمة الختامية في المحاضرة؟",
+
+  c:[
+   "إضافة معلومات جديدة فقط.",
+   "إعادة طباعة المنهج نفسه.",
+   "تحديد القوة والقصور، ربط القصور بالأسس، اقتراح تحسين مبرر، ثم التحقق من الأثر.",
+   "رفع صعوبة الاختبار فقط."
+  ],
+
+  a:2,
+
+  hint:"تذكري خطوات: قوة → قصور → أساس مناسب → تحسين مبرر → دليل على الأثر."
+ },
+
+
+ {
+  skill:"التقويم",
+  stage:"حكم",
+  q:"كيف تعرفين أن التحسين المقترح أحدث فرقًا حقيقيًا؟",
+
+  c:[
+   "بالاعتماد على الانطباع فقط.",
+   "بزيادة عدد الصفحات.",
+   "برصد نتائج التطبيق وتقويمها واستخدامها لاتخاذ قرارات تحسين مستمرة.",
+   "بإضافة فيديو جديد."
+  ],
+
+  a:2,
+
+  hint:"المحاضرة تؤكد المتابعة والتقويم ورصد النتائج لاتخاذ قرارات تحسين مستمرة."
  }
- document.getElementById("nextBtn").disabled=false;document.getElementById("hintBtn").disabled=true;updateTop();
+
+];
+
+
+const state={
+ i:0,
+ score:0,
+ correct:0,
+ answered:false,
+ skills:{},
+ quizStarted:false,
+ simStep:0,
+ portfolio:""
+};
+
+
+const maxScore=30;
+const pts=3;
+const storageKey="curriculumLab_noha_v3";
+
+
+function $(id){
+ return document.getElementById(id);
 }
+
+
+function go(id){
+
+ document.querySelectorAll(".section")
+   .forEach(s=>s.classList.remove("active"));
+
+ $(id).classList.add("active");
+
+ document.querySelectorAll(".nav button")
+   .forEach(b=>{
+     b.classList.toggle(
+       "active",
+       b.dataset.nav===id
+     );
+   });
+
+ if(id==="results"){
+   renderResults();
+ }
+
+ updateHeader();
+
+ window.scrollTo({
+   top:0,
+   behavior:"smooth"
+ });
+}
+
+
+function updateHeader(){
+
+ const completed=Math.min(
+   state.i,
+   questions.length
+ );
+
+ const pct=Math.round(
+   completed/questions.length*100
+ );
+
+ $("progressBar").style.width=pct+"%";
+ $("progressText").textContent=pct+"%";
+
+ $("homeScore").textContent=
+   state.score+"/"+maxScore;
+
+ $("homeCorrect").textContent=
+   state.correct;
+
+ $("homeLevel").textContent=
+   getLevel();
+
+ $("homeWeak").textContent=
+   getWeakSkill()||"—";
+}
+
+
+function startDiagnostic(){
+
+ state.i=0;
+ state.score=0;
+ state.correct=0;
+ state.answered=false;
+ state.skills={};
+ state.quizStarted=true;
+
+ go("quiz");
+
+ renderQuestion();
+}
+
+
+function renderQuestion(){
+
+ const q=questions[state.i];
+
+ state.answered=false;
+
+ $("qStage").textContent=
+   q.stage+" • "+label(q.skill);
+
+ $("qCounter").textContent=
+   (state.i+1)+" / "+questions.length;
+
+ $("quizBar").style.width=
+   ((state.i+1)/questions.length*100)+"%";
+
+ $("qText").textContent=
+   q.q;
+
+ const box=$("choices");
+
+ box.innerHTML="";
+
+ q.c.forEach((text,idx)=>{
+
+   const b=document.createElement("button");
+
+   b.className="choice";
+   b.type="button";
+   b.textContent=text;
+
+   b.onclick=()=>selectChoice(idx);
+
+   box.appendChild(b);
+
+ });
+
+ $("feedback").className="feedback";
+ $("feedback").innerHTML="";
+
+ $("adaptive").className="adaptive";
+ $("adaptive").innerHTML="";
+
+ $("hintBtn").disabled=false;
+
+ $("nextBtn").disabled=true;
+
+ $("nextBtn").textContent=
+   state.i===questions.length-1
+   ?"عرض التحليل"
+   :"تحقق / التالي";
+
+ updateHeader();
+}
+
+
+function selectChoice(idx){
+
+ if(state.answered)return;
+
+ const q=questions[state.i];
+
+ const choices=[
+   ...document.querySelectorAll(".choice")
+ ];
+
+ state.answered=true;
+
+ choices[idx].classList.add("selected");
+
+
+ if(idx===q.a){
+
+   choices[idx].classList.remove("selected");
+
+   choices[idx].classList.add("correct");
+
+   state.correct++;
+
+   state.score+=pts;
+
+   incSkill(q.skill,true);
+
+   $("feedback").className=
+      "feedback show good";
+
+   $("feedback").innerHTML=
+      "<b>استنتاج صحيح.</b> اختيارك ينسجم مع منطق المحتوى.";
+
+ }
+
+
+ else{
+
+   /*
+      مهم:
+      لا نضيف class="correct"
+      للإجابة الصحيحة هنا.
+      بالتالي لن تنكشف الإجابة الصحيحة.
+   */
+
+   choices[idx].classList.remove("selected");
+
+   choices[idx].classList.add("wrong");
+
+   incSkill(q.skill,false);
+
+   $("feedback").className=
+      "feedback show bad";
+
+   $("feedback").innerHTML=
+      "<b>هذه الإجابة تحتاج مراجعة.</b> "+
+      "لن نكشف الخيار الصحيح؛ أعيدي بناء الفكرة اعتمادًا على التلميح ومسار الدعم.";
+
+   $("adaptive").className=
+      "adaptive show";
+
+   $("adaptive").innerHTML=
+      "<b>مسار تكيفي:</b> تحتاجين دعمًا إضافيًا في مجال "+
+      "<u>"+label(q.skill)+"</u>."+
+      "<br>افتحي المورد المرتبط بالمفهوم، ثم عودي وطبقي الفكرة في موقف جديد."+
+      "<br><button class='adaptive-link' type='button' "+
+      "onclick='openSupport(\""+q.skill+"\")'>"+
+      "↗ فتح مسار الدعم: "+label(q.skill)+
+      "</button>";
+ }
+
+ $("nextBtn").disabled=false;
+ $("hintBtn").disabled=true;
+
+ updateHeader();
+}
+
+
 function showHint(){
- const q=questions[state.i];const f=document.getElementById("feedback");f.className="feedback show";f.innerHTML="<b>تلميح:</b> "+q.h;
+
+ const q=questions[state.i];
+
+ $("feedback").className=
+   "feedback show";
+
+ $("feedback").innerHTML=
+   "<b>تلميح:</b> "+q.hint;
 }
+
+
 function nextQuestion(){
+
  if(!state.answered)return;
- if(state.i<questions.length-1){state.i++;renderQuestion();}else{state.i=questions.length;go("simulation");}
+
+ if(state.i<questions.length-1){
+
+   state.i++;
+
+   renderQuestion();
+
+ }
+
+ else{
+
+   state.i=questions.length;
+
+   go("simulation");
+
+   renderSimulation();
+
+ }
 }
-function weakSkill(){
- const names=questions.map(q=>q.skill),counts={};names.forEach(n=>counts[n]=(counts[n]||0)+1);
- const answeredBySkill={};
- questions.slice(0,state.i).forEach(q=>{answeredBySkill[q.skill]=(answeredBySkill[q.skill]||0)+1});
- let min=null,score=2;
- Object.keys(counts).forEach(k=>{let s=(state.skills[k]||0)/(counts[k]*100);if(answeredBySkill[k]&&s<score){score=s;min=k}});
- return min;
+
+
+function incSkill(skill,ok){
+
+ if(!state.skills[skill]){
+
+   state.skills[skill]={
+     right:0,
+     total:0
+   };
+
+ }
+
+ state.skills[skill].total++;
+
+ if(ok){
+   state.skills[skill].right++;
+ }
 }
-function level(){
- const p=state.score/30;
- return p>=.85?"محللة متمكنة":p>=.6?"مطبقة نامية":p>=.4?"بحاجة لدعم":"مستكشفة";
+
+
+function getWeakSkill(){
+
+ let weak=null;
+ let min=1.1;
+
+ Object.entries(state.skills)
+ .forEach(([skill,v])=>{
+
+   if(v.total>0){
+
+     const ratio=
+       v.right/v.total;
+
+     if(ratio<min){
+
+       min=ratio;
+       weak=skill;
+     }
+
+   }
+
+ });
+
+ return weak;
 }
+
+
+function getLevel(){
+
+ const r=
+   state.score/maxScore;
+
+ if(r>=.85)return"متمكنة";
+
+ if(r>=.60)return"مطبقة";
+
+ if(r>=.40)return"نامية";
+
+ return"بحاجة لدعم";
+}
+
+
+function label(skill){
+
+ return skill==="التفكير_العليا"
+   ?"التفكير العليا"
+   :skill;
+}
+
+
+function supportTarget(skill){
+
+ if(
+  skill==="التطوير" ||
+  skill==="نفسي" ||
+  skill==="فلسفي" ||
+  skill==="اجتماعي" ||
+  skill==="ثقافي" ||
+  skill==="ديني" ||
+  skill==="معرفي"
+ ){
+   return"map";
+ }
+
+ if(
+  skill==="التفكير_العليا" ||
+  skill==="التقويم"
+ ){
+   return"simulation";
+ }
+
+ return"learn";
+}
+
+
+function openSupport(skill){
+
+ const target=
+   supportTarget(skill);
+
+ go(target);
+
+ if(target==="map"){
+
+   toast(
+    "مسار الدعم: راجعي خريطة الأسس ثم عودي إلى المحاكاة."
+   );
+
+ }
+
+ else if(target==="simulation"){
+
+   renderSimulation();
+
+   toast(
+    "مسار الدعم: طبّقي المفهوم الآن في المحاكاة."
+   );
+
+ }
+
+ else{
+
+   toast(
+    "مسار الدعم: ابدئي بالمراجعة الذكية."
+   );
+
+ }
+}
+
+
+function renderSimulation(){
+
+ const c=$("simContent");
+
+ if(state.simStep===0){
+
+   c.innerHTML=
+   "<h3>القرار الأول: ما أول خطوة في التطوير؟</h3>"+
+   "<div class='decisions'>"+
+   "<button class='decision' onclick='simChoose(1)'>"+
+   "إضافة فيديوهات أكثر للمحتوى."+
+   "</button>"+
+   "<button class='decision' onclick='simChoose(2)'>"+
+   "تقييم المنهج الحالي وتحديد جوانب القوة والقصور والاحتياج."+
+   "</button>"+
+   "<button class='decision' onclick='simChoose(3)'>"+
+   "رفع مستوى صعوبة الاختبار مباشرة."+
+   "</button>"+
+   "</div>";
+
+ }
+
+
+ else if(state.simStep===1){
+
+   c.innerHTML=
+   "<h3>القرار الثاني: كيف تعالجين الفروق الفردية؟</h3>"+
+   "<div class='decisions'>"+
+   "<button class='decision' onclick='simChoose(4)'>"+
+   "أقدم خبرة واحدة للجميع."+
+   "</button>"+
+   "<button class='decision' onclick='simChoose(5)'>"+
+   "أنوع الخبرات والدعم وفق الاستعداد، مع تنويع وسائل التدريس والتقويم."+
+   "</button>"+
+   "</div>";
+
+ }
+
+
+ else if(state.simStep===2){
+
+   c.innerHTML=
+   "<h3>القرار الثالث: كيف تتحققين من أثر التطوير؟</h3>"+
+   "<div class='decisions'>"+
+   "<button class='decision' onclick='simChoose(6)'>"+
+   "أكتفي بانطباع المعلمة."+
+   "</button>"+
+   "<button class='decision' onclick='simChoose(7)'>"+
+   "أحدد مؤشرات تعلم، وأرصد النتائج، وأستخدم التقويم والمتابعة لاتخاذ قرارات تحسين مستمرة."+
+   "</button>"+
+   "</div>";
+
+ }
+
+
+ else{
+
+   c.innerHTML=
+   "<h3>اكتمل مسار المحاكاة ✓</h3>"+
+   "<div class='quote'>"+
+   "أصبحت القرارات قائمة على تشخيص الحاجة، ومراعاة الفروق الفردية، وتقويم الأثر. اكتبي الآن تحسينك الخاص في المهمة المفتوحة."+
+   "</div>";
+
+ }
+
+}
+
+
+function simChoose(n){
+
+ const f=$("simFeedback");
+
+ if(n===2){
+
+   state.simStep=1;
+
+   f.className="feedback show good";
+
+   f.innerHTML=
+    "<b>قرار تحليلي مناسب.</b> يبدأ التطوير بتحديد الحاجة وتقييم المنهج الحالي وكشف الثغرات.";
+
+   renderSimulation();
+
+ }
+
+ else if(n===5){
+
+   state.simStep=2;
+
+   f.className="feedback show good";
+
+   f.innerHTML=
+    "<b>قرار متسق.</b> الأساس النفسي يقتضي تنويع الخبرات والدعم ومراعاة الفروق الفردية.";
+
+   renderSimulation();
+
+ }
+
+ else if(n===7){
+
+   state.simStep=3;
+
+   f.className="feedback show good";
+
+   f.innerHTML=
+    "<b>قرار مكتمل.</b> المتابعة والتقويم ورصد النتائج تدعم التحسين المستمر.";
+
+   renderSimulation();
+
+ }
+
+ else{
+
+   f.className="feedback show bad";
+
+   f.innerHTML=
+    "<b>أعيدي تحليل الموقف.</b> اسألي: ما المشكلة قبل أن تختاري التدخل؟";
+
+ }
+
+}
+
+
+function savePortfolio(){
+
+ const text=
+   $("designAnswer").value.trim();
+
+ const f=
+   $("saveFeedback");
+
+ if(!text){
+
+   f.className=
+      "feedback show bad";
+
+   f.textContent=
+      "اكتبي التحليل أولًا حتى يصبح لديك أثر تعلم قابل للمراجعة.";
+
+   return;
+ }
+
+ state.portfolio=text;
+
+ localStorage.setItem(
+   storageKey,
+   text
+ );
+
+ f.className=
+   "feedback show good";
+
+ f.innerHTML=
+   "<b>تم الحفظ محليًا.</b> سيظهر أثر التعلم في لوحة التحليل.";
+
+ renderResults();
+}
+
+
 function renderResults(){
- document.getElementById("finalScore").textContent=state.score+"/24";
- document.getElementById("finalCorrect").textContent=state.correct+" / "+questions.length;
- document.getElementById("finalLevel").textContent=level();
- document.getElementById("finalWeak").textContent=weakSkill()||"لا توجد فجوة واضحة";
- const all={التطوير:0,نفسي:0,فلسفي:0,اجتماعي:0,ثقافي:0,ديني:0,معرفي:0,تفكير_عليا:0};
- questions.forEach(q=>all[q.skill]=(all[q.skill]||0)+1);
- const wrap=document.getElementById("skillBars");wrap.innerHTML="";
- Object.keys(all).forEach(k=>{let v=Math.round(((state.skills[k]||0)/(all[k]*100))*100);let row=document.createElement("div");row.className="skill-row";row.innerHTML="<b>"+k.replace("_"," ")+"</b><div class='skillbar'><span style='width:"+v+"%'></span></div><span>"+v+"%</span>";wrap.appendChild(row)});
- let w=weakSkill(),msg=w?`أولوية الدعم: <b>${w}</b>. ابدئي بمراجعة المفهوم، ثم طبقيه في المحاكاة، ثم أعيدي التفكير في العلاقة بين المشكلة والأساس والدليل على الأثر.`:"أداؤك متوازن في التشخيص. انتقلي إلى المحاكاة لتوسيع مهارات التقويم والتصميم.";
- document.getElementById("recommendation").innerHTML=msg;
+
+ $("finalScore").textContent=
+   state.score+"/"+maxScore;
+
+ $("finalCorrect").textContent=
+   state.correct+"/"+questions.length;
+
+ $("finalLevel").textContent=
+   getLevel();
+
+ const weak=
+   getWeakSkill();
+
+ $("finalWeak").textContent=
+   weak?label(weak):"متوازن";
+
+ const wrap=
+   $("skills");
+
+ wrap.innerHTML="";
+
+ const names=[
+   "التطوير",
+   "نفسي",
+   "فلسفي",
+   "اجتماعي",
+   "ثقافي",
+   "ديني",
+   "معرفي",
+   "التفكير_العليا",
+   "التقويم"
+ ];
+
+ names.forEach(name=>{
+
+   const v=
+     state.skills[name] ||
+     {
+       right:0,
+       total:0
+     };
+
+   if(!v.total)return;
+
+   const pct=
+     Math.round(
+       v.right/v.total*100
+     );
+
+   const row=
+     document.createElement("div");
+
+   row.className="skill";
+
+   row.innerHTML=
+     "<b>"+label(name)+"</b>"+
+     "<div class='skillbar'>"+
+     "<i style='width:"+pct+"%'></i>"+
+     "</div>"+
+     "<span>"+pct+"%</span>";
+
+   wrap.appendChild(row);
+
+ });
+
+
+ let rec;
+
+
+ if(weak){
+
+   rec=
+   "<b>مسار الدعم الأول:</b> "+
+   label(weak)+
+   ". راجعي المفهوم، ثم طبقيه في المحاكاة. <br>"+
+   "<button class='adaptive-link' type='button' "+
+   "onclick='openSupport(\""+weak+"\")'>"+
+   "↗ فتح مسار الدعم"+
+   "</button>";
+
+ }
+
+
+ else{
+
+   rec=
+   "<b>أداء متوازن:</b> "+
+   "انتقلي إلى المهمة التصميمية ووسّعي الحل ليجمع أكثر من أساس.";
+
+ }
+
+ $("recommendation").innerHTML=
+   rec;
+
+
+ const saved=
+   localStorage.getItem(storageKey);
+
+ if(saved){
+
+   $("portfolio").classList.remove("hidden");
+
+   $("portfolioText").textContent=
+     saved;
+
+ }
+
+ else{
+
+   $("portfolio").classList.add("hidden");
+
+ }
+
+ updateHeader();
 }
-function decision(n){
- const f=document.getElementById("simFeedback");
- if(n===2){state.sim++;f.className="feedback show ok";f.innerHTML="<b>قرار تحليلي صحيح.</b> يبدأ التطوير بتحديد الحاجة وتقييم المنهج الحالي وكشف الثغرات، ثم إعادة تعريف الأهداف والتخطيط للتغيير.";document.getElementById("decisions").innerHTML="<h3>القرار الثاني: كيف تعالجين الفروق الفردية؟</h3><button onclick='decision(4)'>أقدم خبرة واحدة للجميع.</button><button onclick='decision(5)'>أنوع الخبرات والدعم وفق الاستعداد، مع تنويع وسائل التدريس والتقويم.</button>";}
- else if(n===5){state.sim++;f.className="feedback show ok";f.innerHTML="<b>قرار متسق.</b> هذا يعكس الأساس النفسي: النمو فردي، والفروق الفردية تتطلب تمايزًا ودعمًا.";document.getElementById("decisions").innerHTML="<h3>القرار الثالث: كيف تتحققين من أثر التطوير؟</h3><button onclick='decision(6)'>أكتفي بانطباع المعلمة.</button><button onclick='decision(7)'>أحدد مؤشرات تعلم وأستخدم التقويم والمتابعة لمقارنة النتائج واتخاذ قرارات تحسين مستمرة.</button>";}
- else if(n===7){state.sim++;f.className="feedback show ok";f.innerHTML="<b>اكتمل مسار المحاكاة.</b> القرار يجمع التقويم والمتابعة والتحسين المستمر، وهي خطوة أساسية في تنفيذ التطوير وتقويمه.";document.getElementById("decisions").innerHTML="<div class='badge'><b>تحدي التفكير:</b> الآن اكتبي في مهمة التصميم كيف يمكن لنشاط واحد أن يجمع الأساس النفسي والاجتماعي والمعرفي، ثم كيف ستقيسين أثره.</div>";}
- else{f.className="feedback show bad";f.innerHTML="<b>أعيدي تحليل الموقف.</b> اسألي: ما المشكلة أولًا؟ وما الأساس الذي يعالجها؟ ثم اختاري القرار الذي يغير الممارسة لا الشكل فقط."}
+
+
+function resetAll(){
+
+ localStorage.removeItem(
+   storageKey
+ );
+
+ state.i=0;
+ state.score=0;
+ state.correct=0;
+ state.answered=false;
+ state.skills={};
+ state.quizStarted=false;
+ state.simStep=0;
+ state.portfolio="";
+
+ $("designAnswer").value="";
+
+ $("saveFeedback").className=
+   "feedback";
+
+ startDiagnostic();
 }
-function saveDesign(){
- const t=document.getElementById("designAnswer").value.trim();const m=document.getElementById("saveMsg");
- if(!t){m.textContent="اكتبي تحليلك أولًا حتى يتحول إلى أثر تعلم قابل للمراجعة.";m.className="feedback show bad";return}
- localStorage.setItem("curriculumLabPortfolio",t);
- m.innerHTML="<b>تم الحفظ محليًا.</b> أصبح لديك أثر تعلم يمكن الرجوع إليه من المتصفح نفسه.";
- m.className="feedback show ok";
+
+
+function toast(text){
+
+ const t=$("toast");
+
+ t.textContent=text;
+
+ t.classList.add("show");
+
+ clearTimeout(window.__toast);
+
+ window.__toast=
+   setTimeout(
+     ()=>t.classList.remove("show"),
+     2500
+   );
 }
-function restart(){localStorage.removeItem("curriculumLabPortfolio");state={i:0,score:0,correct:0,answered:false,skills:{},sim:0};startQuiz();}
-updateTop();
+
+
+(function init(){
+
+ const saved=
+   localStorage.getItem(storageKey);
+
+ if(saved){
+
+   state.portfolio=saved;
+
+   $("designAnswer").value=
+     saved;
+
+ }
+
+ updateHeader();
+
+ renderSimulation();
+
+})();
+
 </script>
+
 </body>
 </html>
