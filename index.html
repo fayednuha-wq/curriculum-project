@@ -292,7 +292,7 @@ textarea{width:100%;min-height:145px;background:rgba(0,0,0,.16);color:var(--text
  <button data-nav="home" class="active" onclick="go('home')">الرئيسية</button>
  <button data-nav="map" onclick="go('map')">خريطة الأسس</button>
  <button data-nav="learn" onclick="go('learn')">المراجعة</button>
- <button data-nav="quiz" onclick="go('quiz')">التشخيص</button>
+ <button data-nav="quiz" onclick="startDiagnostic()">التشخيص</button>
  <button data-nav="simulation" onclick="go('simulation')">المحاكاة</button>
  <button data-nav="results" onclick="go('results')">تحليل الأداء</button>
 </nav>
@@ -361,6 +361,7 @@ function go(id){
  $(id).classList.add("active");
  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
  if(id==="results") renderResults();
+ if(id==="quiz" && state.quizStarted) renderQuestion();
  updateHeader();
  window.scrollTo({top:0,behavior:"smooth"});
 }
