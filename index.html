@@ -3,172 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة تكامل أسس المنهج | رحلة التفاعل الرقمي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Cairo', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); min-height: 100vh; }
-        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-    </style>
+    <title>أسس بناء وتطوير المنهج</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- استيراد خط تجملي عربي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="text-slate-800 flex flex-col justify-between p-4 sm:p-6">
+<body>
 
-    <!-- الهيدر التفاعلي -->
-    <header class="max-w-4xl mx-auto w-full bg-indigo-900/80 border border-indigo-700/50 text-white rounded-2xl p-5 shadow-2xl backdrop-blur-md mb-6 flex flex-col sm:flex-row justify-between items-center">
-        <div>
-            <span class="bg-indigo-500/30 border border-indigo-400 text-indigo-200 text-xs px-3 py-1 rounded-full font-bold">جامعة جدة - دراسات عليا</span>
-            <h1 class="text-xl sm:text-2xl font-black mt-2 tracking-wide">منصة تكامل أسس المنهج وتطويره (Immersive)</h1>
-        </div>
-        <div class="mt-3 sm:mt-0 text-xs text-emerald-300 font-bold bg-emerald-950/60 border border-emerald-500/40 px-3 py-2 rounded-xl">
-            ⚡ نظام تفاعلي غامر (3 مراحل معتمدة)
-        </div>
+    <header>
+        <h1>محاضرة: أسس بناء وتطوير المنهج</h1>
+        <p>رحلة تفاعلية لفهم شامل لعناصر تطوير المنهج وأسسه الستة</p>
     </header>
 
-    <!-- المحتوى الرئيسي -->
-    <main class="max-w-4xl mx-auto w-full space-y-6 flex-grow">
-        
-        <!-- المرحلة 1: الفلسفة والكتلة المتكاملة -->
-        <section class="glass-card rounded-2xl shadow-xl p-6 sm:p-8 border border-white/20">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-md">1</span>
-                <h2 class="text-lg sm:text-xl font-bold text-indigo-950">فلسفة "الكتلة الواحدة المتكاملة"</h2>
-            </div>
-            <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
-                في الاتجاهات الحديثة، أسس المنهج (الدينية، الثقافية، الاجتماعية، الفلسفية، النفسية، المعرفية) ليست أجزاء منفصلة، بل تشكل <strong>نسيجاً عضوياً متكاملاً</strong>. أي تعديل في زاوية يحدث أثراً متسلسلاً في بقية الأسس.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
-                <div class="bg-indigo-50/80 p-3.5 rounded-xl border border-indigo-100 font-bold text-indigo-900 text-center shadow-sm">الأبعاد العقدية والثقافية</div>
-                <div class="bg-indigo-50/80 p-3.5 rounded-xl border border-indigo-100 font-bold text-indigo-900 text-center shadow-sm">الخصائص النفسية والمجتمعية</div>
-                <div class="bg-indigo-50/80 p-3.5 rounded-xl border border-indigo-100 font-bold text-indigo-900 text-center shadow-sm">البنية المعرفية والفلسفية</div>
+    <main class="container">
+        <!-- القسم الأول: مفهوم التطوير -->
+        <section class="card">
+            <h2>1. ما هو تطوير المنهج؟[cite: 1]</h2>
+            <p>التطوير ليس مجرد إضافة فيديوهات أو رفع نسخة رقمية، بل هو عملية شاملة تمس جميع عناصر المنهج[cite: 1]:</p>
+            <ul class="bullet-list">
+                <li><strong>الأهداف:</strong> الغايات الكبرى والنتاجات[cite: 1].</li>
+                <li><strong>المحتوى:</strong> المعرفة والمهارات والقيم[cite: 1].</li>
+                <li><strong>التدريس والأنشطة:</strong> الطرائق والأساليب الميسرة للتعلم[cite: 1].</li>
+                <li><strong>التقويم:</strong> أدوات التحقق من تحقق الأهداف[cite: 1].</li>
+                <li><strong>البيئة والمصادر:</strong> التجهيزات والدعم التقني[cite: 1].</li>
+            </ul>
+        </section>
+
+        <!-- القسم الثاني: الأسس الستة -->
+        <section class="card">
+            <h2>2. الأسس الستة لبناء وتطوير المنهج[cite: 1]</h2>
+            <div class="grid">
+                <div class="box"><h3>الأساس الفلسفي</h3><p>لماذا نعلم؟ الغايات والقيم والاتساق بين المعلن والممارس[cite: 1].</p></div>
+                <div class="box"><h3>الأساس النفسي</h3><p>من المتعلم؟ مراعاة خصائص النمو والفروق الفردية[cite: 1].</p></div>
+                <div class="box"><h3>الأساس الاجتماعي</h3><p>ماذا يحتاج المجتمع؟ ربط المنهج بالمشكلات وتلبية تطلعاته[cite: 1].</p></div>
+                <div class="box"><h3>الأساس الثقافي</h3><p>ماذا ننقل للأجيال؟ نقل الثقافة وتنقيتها وحفظ الهوية[cite: 1].</p></div>
+                <div class="box"><h3>الأساس الديني</h3><p>القيم والأخلاق المستمدة من القرآن والسنة والوازع الذاتي[cite: 1].</p></div>
+                <div class="box"><h3>الأساس المعرفي</h3><p>طبيعة المعرفة، دقتها، حداثتها، وأنماط تنظيمها[cite: 1].</p></div>
             </div>
         </section>
 
-        <!-- المرحلة 2: المحاكي والتدخل التقني -->
-        <section class="glass-card rounded-2xl shadow-xl p-6 sm:p-8 border border-white/20">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-md">2</span>
-                <h2 class="text-lg sm:text-xl font-bold text-indigo-950">المحاكي التفاعلي للتشخيص والتدخل الرقمي</h2>
-            </div>
-            <p class="text-slate-500 text-xs sm:text-sm mb-5">حدد المحور المستهدف وأدخل المشكلة لمشاهدة الحلول التربوية التقنية المتكاملة:</p>
-
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">اختر المحور الأساسي:</label>
-                    <select id="analysisType" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-600 outline-none shadow-inner">
-                        <option value="psychological">الأساس النفسي (مراعاة الفروق الفردية للمتعلمين)</option>
-                        <option value="cognitive">الأساس المعرفي (تنظيم وترسيم بنية المحتوى المعرفي)</option>
-                        <option value="social">الأساس الاجتماعي والثقافي (الارتباط بالهوية والبيئة)</option>
-                    </select>
+        <!-- القسم الثالث: المهمة الختامية والتحليل -->
+        <section class="card highlight-card">
+            <h2>3. المهمة الختامية: تحليل وتطوير منهج[cite: 1]</h2>
+            <p class="problem-text"><strong>الحالة:</strong> منهج يحتوي على معلومات حديثة، لكنه يقدم الأنشطة نفسها لجميع الطالبات، ولا يرتبط بمشكلات المجتمع، ويقيس الحفظ فقط[cite: 1].</p>
+            
+            <button id="toggleBtn" class="btn">عرض التحليل والحلول التربوية</button>
+            
+            <div id="analysisContent" class="hidden">
+                <div class="analysis-step">
+                    <h4>أولاً: جوانب القوة والقصور والأسس المرتبطة[cite: 1]</h4>
+                    <p>✔️ <strong>قوة (أساس معرفي):</strong> معلومات حديثة[cite: 1].</p>
+                    <p>❌ <strong>قصور (أساس نفسي):</strong> تقديم أنشطة موحدة دون مراعاة الفروق الفردية[cite: 1].</p>
+                    <p>❌ <strong>قصور (أساس اجتماعي):</strong> عدم الارتباط بمشكلات المجتمع[cite: 1].</p>
+                    <p>❌ <strong>قصور (أساس فلسفي ومعرفي):</strong> التقويم يقتصر على الحفظ فقط غياباً للاتساق[cite: 1].</p>
                 </div>
-
-                <div>
-                    <label class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">وصف مشكلة التعلم في المحتوى:</label>
-                    <textarea id="problemDesc" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-600 outline-none shadow-inner" placeholder="اكتب وصفاً موجزاً للمشكلة المراد معالجتها..."></textarea>
+                <div class="analysis-step">
+                    <h4>ثانياً: مقترحات التحسين المبررة[cite: 1]</h4>
+                    <p>💡 <strong>للأنشطة:</strong> تطبيق التعليم المتمايز (لأن تقارب الأعمار لا يعني تماثل القدرات)[cite: 1].</p>
+                    <p>💡 <strong>للمجتمع:</strong> ربط الدروس بقضايا البيئة والموارد المحلية (لضمان صلة المنهج بالحياة)[cite: 1].</p>
+                    <p>💡 <strong>للتقويم:</strong> استخدام مهام أدائية ومشروعات استقصائية (لتحقيق الاتساق مع الأهداف)[cite: 1].</p>
                 </div>
-
-                <button onclick="runAnalysis()" class="w-full bg-gradient-to-r from-indigo-600 to-indigo-800 hover:from-indigo-700 hover:to-indigo-900 text-white font-bold py-3.5 px-4 rounded-xl text-sm transition-all shadow-lg transform active:scale-95">
-                    تشغيل محرك التشخيص والتدخل الرقمي ⚙️
-                </button>
-            </div>
-
-            <!-- نتيجة التحليل -->
-            <div id="resultContainer" class="hidden mt-6 p-5 bg-indigo-50/70 border-2 border-indigo-200 rounded-2xl animate-fade-in">
-                <h3 class="text-sm sm:text-base font-bold text-indigo-950 mb-3 flex items-center gap-2">
-                    <span>📊</span> تقرير التدخل التربوي والتقني الشامل:
-                </h3>
-                <div id="resultContent" class="text-xs sm:text-sm text-slate-700 space-y-2.5 leading-relaxed bg-white p-4 rounded-xl border border-indigo-100 shadow-sm"></div>
             </div>
         </section>
-
-        <!-- المرحلة الثالثة: التقويم والتغذية الراجعة الفورية -->
-        <section class="glass-card rounded-2xl shadow-xl p-6 sm:p-8 border border-white/20">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shadow-md">3</span>
-                <h2 class="text-lg sm:text-xl font-bold text-indigo-950">القياس، التقويم، والتغذية الراجعة</h2>
-            </div>
-            <p class="text-slate-500 text-xs sm:text-sm mb-4">قيم فهمك لمفهوم التكامل المنهجي واحصل على تغذية راجعة فورية:</p>
-
-            <div class="space-y-4 bg-slate-50/80 p-5 rounded-2xl border border-slate-200">
-                <p class="text-xs sm:text-sm font-bold text-slate-900">سؤال تقييمي: هل يمكن تطوير الأساس المعرفي للمنهج بمعزل تام عن الأساس النفسي والثقافي للمتعلم؟</p>
-                <div class="space-y-2.5 text-xs sm:text-sm">
-                    <label class="flex items-center gap-3 cursor-pointer bg-white p-3 rounded-xl border border-slate-200 hover:border-indigo-400 transition-all shadow-sm">
-                        <input type="radio" name="quiz" value="wrong" class="w-4 h-4 text-indigo-600"> نعم، يمكن فصل المعرفة عن الخصائص النفسية والثقافية للمتعلم.
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer bg-white p-3 rounded-xl border border-slate-200 hover:border-indigo-400 transition-all shadow-sm">
-                        <input type="radio" name="quiz" value="right" class="w-4 h-4 text-indigo-600"> لا، فالأسس تشكل كتلة واحدة متكاملة وأي تعديل يؤثر على الكل.
-                    </label>
-                </div>
-                <button onclick="checkQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-6 rounded-xl text-xs sm:text-sm transition-all shadow-md">
-                    تحقق من النتيجة والحصول على التغذية الراجعة 🎯
-                </button>
-                <div id="quizFeedback" class="hidden text-xs sm:text-sm font-semibold p-4 rounded-xl shadow-sm"></div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- الفوتر -->
-    <footer class="max-w-4xl mx-auto w-full text-center text-slate-400 text-xs mt-8 py-4 border-t border-white/10">
-        <p>تصميم وتطوير تعلّمي رقمي استيفاءً لمتطلبات مقرر مناهج وطرق تدريس (ECUR 606) - جامعة جدة.</p>
+    <footer>
+        <p>تم إعداد وتطوير المحتوى التفاعلي لمقرر تقنيات التعليم والمناهج</p>
     </footer>
 
-    <!-- سكربت التشغيل الغامر -->
-    <script>
-        function runAnalysis() {
-            const type = document.getElementById('analysisType').value;
-            const problem = document.getElementById('problemDesc').value;
-            const container = document.getElementById('resultContainer');
-            const content = document.getElementById('resultContent');
-
-            if(!problem.trim()) {
-                alert('الرجاء كتابة وصف المشكلة أولاً.');
-                return;
-            }
-
-            container.classList.remove('hidden');
-
-            let text = "";
-            if(type === 'psychological') {
-                text = `
-                    <p><strong>1. التشخيص التربوي:</strong> قصور في تفعيل الأساس النفسي ومراعاة الفروق الفردية للمتعلمين في المحتوى الحالي.</p>
-                    <p><strong>2. التدخل التقني (التصميم):</strong> هندسة مسارات تعلم تكيّفية (Adaptive Learning) تتماشى مع الفروق الفردية.</p>
-                    <p><strong>3. التقويم والتغذية الراجعة:</strong> إدراج آليات تغذية راجعة تعزيزية فورية ترشد المتعلم بناءً على أدائه.</p>
-                `;
-            } else if(type === 'cognitive') {
-                text = `
-                    <p><strong>1. التشخيص التربوي:</strong> تشتت بنية المحتوى المعرفي وعدم ترابطه بشكل هرمي متسلسل.</p>
-                    <p><strong>2. التدخل التقني (التصميم):</strong> إعادة هيكلة المعرفة عبر خرائط مفاهيم تفاعلية وعناصر وسائط متعددة.</p>
-                    <p><strong>3. التقويم والتغذية الراجعة:</strong> تقويم ختامي تفاعلي يحدد الفجوات المعرفية بدقة فائقة.</p>
-                `;
-            } else {
-                text = `
-                    <p><strong>1. التشخيص التربوي:</strong> انفصال المحتوى عن السياق الثقافي والاجتماعي والديني للمجتمع.</p>
-                    <p><strong>2. التدخل التقني (التصميم):</strong> دمج دراسات حالة ومحاكاة رقمية تعكس الهوية والبيئة المحلية.</p>
-                    <p><strong>3. التقويم والتغذية الراجعة:</strong> تقديم مهام أدائية واقعية مع تقارير أداء تعزز عمق الفهم القيمي.</p>
-                `;
-            }
-            content.innerHTML = text;
-        }
-
-        function checkQuiz() {
-            const selected = document.querySelector('input[name="quiz"]:checked');
-            const feedback = document.getElementById('quizFeedback');
-            feedback.classList.remove('hidden');
-
-            if(!selected) {
-                feedback.className = "text-amber-800 bg-amber-50 p-4 rounded-xl text-xs sm:text-sm border border-amber-200";
-                feedback.innerHTML = "الرجاء اختيار إجابة أولاً لتقييم فهمك.";
-                return;
-            }
-
-            if(selected.value === 'right') {
-                feedback.className = "text-emerald-900 bg-emerald-50 p-4 rounded-xl text-xs sm:text-sm border border-emerald-200";
-                feedback.innerHTML = "🌟 إجابة مثالية وممتازة! لقد أدركتِ تماماً جوهر مفهوم 'الكتلة المتكاملة' لأسس المنهج، وهذا ما يمنح العمل الدرجة الكاملة باستحقاق.";
-            } else {
-                feedback.className = "text-rose-900 bg-rose-50 p-4 rounded-xl text-xs sm:text-sm border border-rose-200";
-                feedback.innerHTML = "⚠️ إجابة غير دقيقة. تذكري أن أسس المنهج تعمل كنسيج عضوي واحد متكامل ولا يمكن فصلها عند التطوير والتحديث.";
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
